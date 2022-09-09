@@ -1,6 +1,6 @@
 package com.example.Mercado_POO.repositorio;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,8 +12,8 @@ public interface RepositorioVenda extends JpaRepository<Venda, Long> {
 
 	Venda findById(long id);
 	
-	List<Venda> findByClienteVenda(long clienteId);
+	Optional<Venda> findByClienteVendaId(long clienteId);
 	
-	List<Venda>findByVendedorVenda(long vendedorId);
+	Optional<Venda>findByVendedorVendaId(long vendedorId);
 	
 }

@@ -1,6 +1,6 @@
 package com.example.Mercado_POO.repositorio;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,8 +13,10 @@ public interface RepositorioFornecedor extends JpaRepository<Fornecedor, Long> {
 
 	Fornecedor findById(long id);
 	
-	List<Fornecedor> findByNomeFornecedor(String nome);
+	Optional<Fornecedor> findByNomeFornecedor(String nomeFornecedor);
 	
-	Fornecedor findByCnpjFornecedor(String cnpjFornecedor);
+	Optional<Fornecedor> findByCnpjFornecedor(String cnpjFornecedor);
+
+	boolean existsByCnpj(String cnpj);
 	
 }

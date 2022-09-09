@@ -31,7 +31,7 @@ public class Venda {
 	private Vendedor vendedorVenda;
 	
 	@OneToMany
-	@JoinColumn(name="compra_id")
+	@JoinColumn(name="venda_id")
 	private List<ProdutoVenda> produtosVenda;
 	
 	private Venda() {
