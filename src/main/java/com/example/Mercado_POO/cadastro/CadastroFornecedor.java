@@ -16,7 +16,7 @@ public class CadastroFornecedor {
 	private RepositorioFornecedor repositorioFornecedor;
 	
 	public Fornecedor save(Fornecedor fornecedor) {
-		if(repositorioFornecedor.existsByCnpj(fornecedor.getCnpjFornecedor())) {
+		if(repositorioFornecedor.existsByCnpjFornecedor(fornecedor.getCnpjFornecedor())) {
 			return null;
 		}	
 		else {

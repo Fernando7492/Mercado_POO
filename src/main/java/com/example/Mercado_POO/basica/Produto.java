@@ -27,6 +27,12 @@ public class Produto{
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 	public BigDecimal getValorCompra() {
 		return valorCompra;
 	}
@@ -64,6 +70,14 @@ public class Produto{
 		this.quantidade = quantidade;
 		this.validade = validade;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", name=" + name + ", categoria=" + categoria + ", valorCompra=" + valorCompra
+				+ ", valorVenda=" + valorVenda + ", quantidade=" + quantidade + ", validade=" + validade + "]";
+	}
+	
 	
 	
 }
