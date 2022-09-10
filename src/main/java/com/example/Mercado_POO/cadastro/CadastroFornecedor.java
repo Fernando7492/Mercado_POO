@@ -28,6 +28,11 @@ public class CadastroFornecedor {
 		return repositorioFornecedor.findAll();
 	}
 	
+	public Fornecedor update(Fornecedor antigo, Fornecedor novo) {
+		novo.setId(antigo.getId());
+		return repositorioFornecedor.save(novo);
+	}
+	
 	public Optional<Fornecedor> findById(Long id) {
 		return repositorioFornecedor.findById(id);
 	}
