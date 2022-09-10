@@ -1,4 +1,4 @@
-
+package com.example.Mercado_POO.basica;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
