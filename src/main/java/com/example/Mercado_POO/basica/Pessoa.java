@@ -1,5 +1,7 @@
 package com.example.Mercado_POO.basica;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,13 @@ public class Pessoa {
 	private String nome;
 	private String cpf;
 	private String sexo;
-	private String dataNascimento;
+	private Date dataNascimento;
 	private String email;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco enderecoPessoa;
 
-	public Pessoa(Long id, String nome, String cpf, String sexo, String dataNascimento, String email,
+	public Pessoa(Long id, String nome, String cpf, String sexo, Date dataNascimento, String email,
 			Endereco enderecoPessoa) {
 		super();
 		this.id = id;
@@ -70,11 +72,11 @@ public class Pessoa {
 		this.sexo = sexo;
 	}
 
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
