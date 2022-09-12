@@ -1,18 +1,35 @@
 package com.example.Mercado_POO.basica;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class ProdutoCompra {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private Integer qtdProdutos;
 	private BigDecimal valorTotal;
 	private Date validade;
 	private Produto produto;
 	
 	public void calcularValorTotal() {
-		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));		
-}
+		valorTotal = produto.getValorCompra().multiply(new BigDecimal(qtdProdutos));		
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Integer getQtdProdutos() {
 		return qtdProdutos;
 	}
@@ -43,5 +60,10 @@ public class ProdutoCompra {
 		this.validade = this.produto.getValidade();
 	}
 	
+	@Override
+	public String toString() {
+		return "ProdutoCompra [qtdProdutos=" + qtdProdutos + ", valorTotal=" + valorTotal + ", validade=" + validade
+				+ ", produto=" + produto + "]";
 	}
-
+	
+}

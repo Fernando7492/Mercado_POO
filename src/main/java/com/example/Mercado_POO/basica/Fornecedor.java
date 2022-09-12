@@ -14,7 +14,7 @@ public class Fornecedor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long fornecedorID;
+	private long id;
 	private String nomeFornecedor;
 	private String cnpjFornecedor;
 	private String emailFornecedor;
@@ -35,10 +35,10 @@ public class Fornecedor {
 		this.enderecoFornecedor = enderecoFornecedor;
 	}
 	public long getId() {
-		return fornecedorID;
+		return id;
 	}
 	public void setId(long id) {
-		this.fornecedorID = id;
+		this.id = id;
 	}
 	public String getNomeFornecedor() {
 		return nomeFornecedor;
@@ -89,7 +89,7 @@ public class Fornecedor {
 	}
 	@Override
 	public String toString() {
-		return "Fornecedor [id="+ fornecedorID + ", nomeFornecedor=" + nomeFornecedor + ", cnpjFornecedor=" + cnpjFornecedor
+		return "Fornecedor [id="+ id + ", nomeFornecedor=" + nomeFornecedor + ", cnpjFornecedor=" + cnpjFornecedor
 				+ ", emailFornecedor=" + emailFornecedor + ", telefoneFornecedor=" + telefoneFornecedor
 				+ ", enderecoFornecedor=" + enderecoFornecedor + "]";
 	}

@@ -22,9 +22,9 @@ public class Vendedor extends Pessoa{
 	@OneToOne(cascade = CascadeType.ALL)
 	private Pessoa pessoa;
 
-	public Vendedor(Long id, String nome, String cpf, String sexo, Date dataNascimento, String email,
+	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
 			Endereco enderecoPessoa, long id2, String cargo, double salario, Date dataContrato, Pessoa pessoa) {
-		super(id, nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 		id = id2;
 		this.cargo = cargo;
 		this.salario = salario;
@@ -32,9 +32,9 @@ public class Vendedor extends Pessoa{
 		this.pessoa = pessoa;
 	}
 
-	public Vendedor(Long id, String nome, String cpf, String sexo, Date dataNascimento, String email,
+	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
 			Endereco enderecoPessoa) {
-		super(id, nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 	}
 
 	public Long getId() {
@@ -77,6 +77,10 @@ public class Vendedor extends Pessoa{
 		this.pessoa = pessoa;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Vendedor [id=" + id + ", cargo=" + cargo + ", salario=" + salario + ", dataContrato=" + dataContrato
+				+ ", pessoa=" + pessoa + "]";
+	}
+
 }

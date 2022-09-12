@@ -1,6 +1,7 @@
 package com.example.Mercado_POO.basica;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,10 +26,9 @@ public class Pessoa {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco enderecoPessoa;
 
-	public Pessoa(Long id, String nome, String cpf, String sexo, Date dataNascimento, String email,
+	public Pessoa(String nome, String cpf, String sexo, Date dataNascimento, String email,
 			Endereco enderecoPessoa) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.sexo = sexo;
@@ -96,6 +96,28 @@ public class Pessoa {
 	public void setEnderecoPessoa(Endereco enderecoPessoa) {
 		this.enderecoPessoa = enderecoPessoa;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cpf);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(cpf, other.cpf);
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento="
+				+ dataNascimento + ", email=" + email + ", enderecoPessoa=" + enderecoPessoa + "]";
+	}
 	
 }

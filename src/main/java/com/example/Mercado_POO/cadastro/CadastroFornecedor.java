@@ -16,7 +16,7 @@ public class CadastroFornecedor {
 	private RepositorioFornecedor repositorioFornecedor;
 	
 	public Fornecedor save(Fornecedor fornecedor) {
-		if(repositorioFornecedor.existsByCnpj(fornecedor.getCnpjFornecedor())) {
+		if(repositorioFornecedor.existsByCnpjFornecedor(fornecedor.getCnpjFornecedor())) {
 			return null;
 		}	
 		else {
@@ -26,6 +26,11 @@ public class CadastroFornecedor {
 	
 	public List<Fornecedor> listAll(){
 		return repositorioFornecedor.findAll();
+	}
+	
+	public Fornecedor update(Fornecedor antigo, Fornecedor novo) {
+		novo.setId(antigo.getId());
+		return repositorioFornecedor.save(novo);
 	}
 	
 	public Optional<Fornecedor> findById(Long id) {
