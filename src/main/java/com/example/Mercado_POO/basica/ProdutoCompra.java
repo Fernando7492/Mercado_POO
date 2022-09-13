@@ -10,20 +10,30 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ProdutoCompra {
-	private Integer qtdProdutos;
-	private BigDecimal valorTotal;
-	private Date validade;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	private Integer qtdProdutos;
+	private BigDecimal valorTotal;
+	private Date validade;
+
 	
 	@ManyToOne
 	private Produto produto;
 	
 	public void calcularValorTotal() {
-		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));		
-}
+		valorTotal = produto.getValorCompra().multiply(new BigDecimal(qtdProdutos));		
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Integer getQtdProdutos() {
 		return qtdProdutos;
 	}
@@ -54,4 +64,10 @@ public class ProdutoCompra {
 		this.validade = this.produto.getValidade();
 	}
 	
+	@Override
+	public String toString() {
+		return "ProdutoCompra [qtdProdutos=" + qtdProdutos + ", valorTotal=" + valorTotal + ", validade=" + validade
+				+ ", produto=" + produto + "]";
 	}
+	
+}

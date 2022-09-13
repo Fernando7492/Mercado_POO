@@ -8,22 +8,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 public class ProdutoVenda {
-	private Integer qtdProdutos;
-	private BigDecimal valorTotal;
-	private Date validade;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	private Integer qtdProdutos;
+	private BigDecimal valorTotal;
+	private Date validade;
+
 	
 	@ManyToOne
 	private Produto produto;
 	
 	public void calcularValorTotal() {
 		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));
-		
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Integer getQtdProdutos() {
@@ -56,7 +65,11 @@ public class ProdutoVenda {
 		this.produto = produto;
 		this.validade = this.produto.getValidade();
 	}
-	
-	
-	}
 
+	@Override
+	public String toString() {
+		return "ProdutoVenda [qtdProdutos=" + qtdProdutos + ", valorTotal=" + valorTotal + ", validade=" + validade
+				+ ", produto=" + produto + "]";
+	}
+	
+}
