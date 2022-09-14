@@ -1,23 +1,27 @@
 package com.example.Mercado_POO.repositorio;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.example.Mercado_POO.basica.Produto;
 
-@Entity
-public interface RepositorioProduto{
+@Repository
+public interface RepositorioProduto extends JpaRepository<Produto, Long>{
 	
-	void cadastrarproduto(Produto produto);
 	
-	Produto procurarProduto(String nome);
+	Optional<Produto> findByNomeProduto(String nomeProduto);
 	
-	void removerProduto(Produto produto);
+	Optional<Produto> findByCategoriaProduto(String categoriaProduto);
 	
-	void atualizarProduto(Produto produto);
+	Optional<Produto> findByQuantidadeProduto(Integer quantidadeProduto);
 	
-	List<Produto> listarProduto();
+	Optional<Produto> findByValidadeProduto(Date validadeProduto);
 	
-
+	
 }

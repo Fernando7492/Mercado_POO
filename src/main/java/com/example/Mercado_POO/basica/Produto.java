@@ -2,6 +2,7 @@ package com.example.Mercado_POO.basica;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,18 +15,18 @@ public class Produto{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String name;
-	private String categoria;
-	private BigDecimal valorCompra;
-	private BigDecimal valorVenda;
-	private int quantidade;
-	private Date validade;
+	private String nomeProduto;
+	private String categoriaProduto;
+	private BigDecimal valorCompraProduto;
+	private BigDecimal valorVendaProduto;
+	private Integer quantidadeProduto;
+	private Date validadeProduto;
 	
-	public String getName() {
-		return name;
+	public String getNomeProduto() {
+		return nomeProduto;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNomeProduto(String nome) {
+		this.nomeProduto = nome;
 	}
 	public String getCategoria() {
 		return categoria;
@@ -34,41 +35,63 @@ public class Produto{
 		this.categoria = categoria;
 	}
 	public BigDecimal getValorCompra() {
-		return valorCompra;
+		return valorCompraProduto;
 	}
 	public void setValorCompra(BigDecimal valorCompra) {
-		this.valorCompra = valorCompra;
+		this.valorCompraProduto = valorCompra;
 	}
 	public BigDecimal getValorVenda() {
-		return valorVenda;
+		return valorVendaProduto;
 	}
 	public void setValorVenda(BigDecimal valorVenda) {
-		this.valorVenda = valorVenda;
+		this.valorVendaProduto = valorVenda;
 	}
 	public int getQuantidade() {
-		return quantidade;
+		return quantidadeProduto;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+		this.quantidadeProduto = quantidade;
 	}
 	public Date getValidade() {
-		return validade;
+		return validadeProduto;
 	}
 	public void setValidade(Date validade) {
-		this.validade = validade;
+		this.validadeProduto = validade;
 	}
 	public long getId() {
 		return id;
 	}
-	public Produto(String name, String categoria, BigDecimal valorCompra, BigDecimal valorVenda, int quantidade,
+	public Produto(String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda, int quantidade,
 			Date validade) {
 		super();
-		this.name = name;
-		this.categoria = categoria;
-		this.valorCompra = valorCompra;
-		this.valorVenda = valorVenda;
-		this.quantidade = quantidade;
-		this.validade = validade;
+		this.nomeProduto = nome;
+		this.categoriaProduto = categoria;
+		this.valorCompraProduto = valorCompra;
+		this.valorVendaProduto = valorVenda;
+		this.quantidadeProduto = quantidade;
+		this.validadeProduto = validade;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(categoriaProduto, id, nomeProduto, quantidadeProduto, validadeProduto, valorCompraProduto, valorVendaProduto);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		return Objects.equals(categoriaProduto, other.categoriaProduto) && id == other.id && Objects.equals(nomeProduto, other.nomeProduto)
+				&& quantidadeProduto == other.quantidadeProduto && Objects.equals(validadeProduto, other.validadeProduto)
+				&& Objects.equals(valorCompraProduto, other.valorCompraProduto) && Objects.equals(valorVendaProduto, other.valorVendaProduto);
+	}
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nomeProduto + ", categoria=" + categoriaProduto + ", valorCompra=" + valorCompraProduto
+				+ ", valorVenda=" + valorVendaProduto + ", quantidade=" + quantidadeProduto + ", validade=" + validadeProduto + "]";
 	}
 	
 	

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ProdutoCompra {
@@ -16,6 +17,9 @@ public class ProdutoCompra {
 	private Integer qtdProdutos;
 	private BigDecimal valorTotal;
 	private Date validade;
+
+	
+	@ManyToOne
 	private Produto produto;
 	
 	public void calcularValorTotal() {

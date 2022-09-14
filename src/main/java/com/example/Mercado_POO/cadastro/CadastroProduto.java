@@ -1,32 +1,46 @@
 package com.example.Mercado_POO.cadastro;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.Produto;
+import com.example.Mercado_POO.repositorio.RepositorioProduto;
 
+@Service
 public class CadastroProduto {
 
 	@Autowired
-	private CadastroProduto cadastropoduto;
+	private RepositorioProduto repositorioProduto;
 	
-	public void cadastrarproduto(Produto produto) {
-		this.cadastropoduto.cadastrarproduto(produto);		
+	public Optional<Produto> findById(long id) {
+		return repositorioProduto.findById(id);
 	}
-
-	public Produto procurarProduto(String nome) {
-		return this.cadastropoduto.procurarProduto(nome);
+	
+	public List<Produto> listAll(){
+		return repositorioProduto.findAll();
 	}
-
-	public void removerProduto(Produto produto) {
-		this.cadastropoduto.removerProduto(produto);	
+	
+	public Optional<Produto> findByNomeProduto(String nome){
+		return repositorioProduto.findByNomeProduto(nome);
 	}
-
-	public void atualizarProduto(Produto produto) {
-		this.atualizarProduto(produto);
+	
+	public Optional<Produto> findByCategoriaProduto(String categoria){
+		return repositorioProduto.findByCategoriaProduto(categoria);
 	}
-	public List<Produto> listarProduto() {
-		return this.cadastropoduto.listarProduto();
+	
+	public Optional<Produto> findByValidadeProduto(Date validade){
+		return repositorioProduto.findByValidadeProduto(validade);
+	} 
+	
+	public void deleteById(Long id) {
+		repositorioProduto.deleteById(id);
+	}
+	
+	public void delete(Produto produto) {
+		repositorioProduto.delete(produto);
 	}
 }
