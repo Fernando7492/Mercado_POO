@@ -15,50 +15,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Mercado_POO.basica.Compra;
+import com.example.Mercado_POO.basica.Venda;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @CrossOrigin(origins="http://localhost:8080/")
 @RestController
 @RequestMapping("/mercado/api/")
-public class ControllerCompra {
+public class ControllerVenda {
 	
 	@Autowired
 	private Mercado mercado;
 
-	@PostMapping("compra")
+	@PostMapping("venda")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public Compra criarCompra(@RequestBody Compra compra) {
-		return mercado.saveCompra(compra);
+	public Venda criarVenda(@RequestBody Venda venda) {
+		return mercado.saveVenda(venda);
 	}
 	
-	@GetMapping("compra")
-	public List<Compra> listarCompras(){
-		return mercado.listAllCompra();
-	}
-	
-	@GetMapping("/{id}")
-	public Optional<Compra> findById(@PathVariable long id){
-		return mercado.findByIdCompra(id);
+	@GetMapping("venda")
+	public List<Venda> listarVendas(){
+		return mercado.listAllVenda();
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<Compra> findByFornecedorId(@PathVariable long idFornecedor){
-		return mercado.findByFornecedorCompraId(idFornecedor);
+	public Optional<Venda> findById(@PathVariable long id){
+		return mercado.findByIdVenda(id);
+	}
+	
+	@GetMapping("/{id}")
+	public Optional<Venda> findByClienteId(@PathVariable long idCliente){
+		return mercado.findByClienteVendaId(idCliente);
+	}
+	
+	@GetMapping("/{id}")
+	public Optional<Venda> findByVendedorId(@PathVariable long idVendedor){
+		return mercado.findByVendedorVendaId(idVendedor);
 	}
 	
 	@DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable long id) {
-		mercado.deleteByIdCompra(id);
+		mercado.deleteByIdVenda(id);
 	}
 	
 	@DeleteMapping("compra")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteCompra(Compra compra) {
-		mercado.deleteCompra(compra);
+	public void deleteVenda(Venda venda) {
+		mercado.deleteVenda(venda);
 	}
-	
-	
 	
 }

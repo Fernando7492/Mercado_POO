@@ -29,10 +29,10 @@ public class Produto{
 		this.nomeProduto = nome;
 	}
 	public String getCategoria() {
-		return categoria;
+		return categoriaProduto;
 	}
 	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+		this.categoriaProduto = categoria;
 	}
 	public BigDecimal getValorCompra() {
 		return valorCompraProduto;
@@ -93,14 +93,5 @@ public class Produto{
 		return "Produto [id=" + id + ", nome=" + nomeProduto + ", categoria=" + categoriaProduto + ", valorCompra=" + valorCompraProduto
 				+ ", valorVenda=" + valorVendaProduto + ", quantidade=" + quantidadeProduto + ", validade=" + validadeProduto + "]";
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Produto [id=" + id + ", name=" + name + ", categoria=" + categoria + ", valorCompra=" + valorCompra
-				+ ", valorVenda=" + valorVenda + ", quantidade=" + quantidade + ", validade=" + validade + "]";
-	}
-	
-	
 	
 }
