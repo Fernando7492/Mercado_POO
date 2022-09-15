@@ -31,8 +31,8 @@ public class Produto{
 	public String getCategoria() {
 		return categoriaProduto;
 	}
-	public void setCategoria(String categoria) {
-		this.categoriaProduto = categoria;
+	public void setCategoria(String categoriaProduto) {
+		this.categoriaProduto = categoriaProduto;
 	}
 	public BigDecimal getValorCompra() {
 		return valorCompraProduto;
@@ -92,6 +92,5 @@ public class Produto{
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nomeProduto + ", categoria=" + categoriaProduto + ", valorCompra=" + valorCompraProduto
 				+ ", valorVenda=" + valorVendaProduto + ", quantidade=" + quantidadeProduto + ", validade=" + validadeProduto + "]";
-	}
-	
+	}	
 }
