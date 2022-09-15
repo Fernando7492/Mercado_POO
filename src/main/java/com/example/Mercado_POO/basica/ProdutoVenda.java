@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
@@ -21,6 +22,7 @@ public class ProdutoVenda {
 
 	
 	@ManyToOne
+	@JoinColumn(name="produto_id")
 	private Produto produto;
 	
 	public void calcularValorTotal() {
