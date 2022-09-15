@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.MovimentacaoEstoque;
+import com.example.Mercado_POO.basica.Produto;
 import com.example.Mercado_POO.repositorio.RepositorioMovimentacaoEstoque;
 
 @Service
@@ -16,6 +17,11 @@ public class CadastoMovimentacaoEstoque {
 	
 	@Autowired
 	private RepositorioMovimentacaoEstoque repositorioMovimentacaoEstoque;
+	
+	public MovimentacaoEstoque save(MovimentacaoEstoque movimentacaoEstoque) {
+			return repositorioMovimentacaoEstoque.save(movimentacaoEstoque);
+		
+	}
 	
 	public Optional<MovimentacaoEstoque> findById(Long id){
 		return repositorioMovimentacaoEstoque.findById(id);
@@ -25,11 +31,11 @@ public class CadastoMovimentacaoEstoque {
 		
 	}
 	
-	Optional<MovimentacaoEstoque> findByHoraMovimentacaoEstoque(Time horaMovimentacaoEstoque) {
+	public Optional<MovimentacaoEstoque> findByHoraMovimentacaoEstoque(Time horaMovimentacaoEstoque) {
 		return repositorioMovimentacaoEstoque.findByHoraMovimentacaoEstoque(horaMovimentacaoEstoque);
 	}
 	
-	Optional<MovimentacaoEstoque> findByMotivoMovimentacaoEstoque(String motivoMovimentacaoEstoque) {
+	public Optional<MovimentacaoEstoque> findByMotivoMovimentacaoEstoque(String motivoMovimentacaoEstoque) {
 		return repositorioMovimentacaoEstoque.findByMotivoMovimentacaoEstoque(motivoMovimentacaoEstoque);
 	}
 	

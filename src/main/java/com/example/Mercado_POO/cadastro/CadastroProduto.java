@@ -40,7 +40,7 @@ public class CadastroProduto {
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
-		return repositorioProduto.findByNomeProduto(nome);
+		return repositorioProduto.findByNomeProdutoContaining(nome);
 	}
 	
 	public Optional<Produto> findByCategoriaProduto(String categoria){

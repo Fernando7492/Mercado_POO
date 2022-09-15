@@ -1,5 +1,7 @@
 package com.example.Mercado_POO.fachada;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,9 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.Compra;
 import com.example.Mercado_POO.basica.Fornecedor;
+import com.example.Mercado_POO.basica.MovimentacaoEstoque;
+import com.example.Mercado_POO.basica.Produto;
 import com.example.Mercado_POO.basica.Venda;
+import com.example.Mercado_POO.cadastro.CadastoMovimentacaoEstoque;
 import com.example.Mercado_POO.cadastro.CadastroCompra;
 import com.example.Mercado_POO.cadastro.CadastroFornecedor;
+import com.example.Mercado_POO.cadastro.CadastroProduto;
 import com.example.Mercado_POO.cadastro.CadastroVenda;
 
 @Service
@@ -22,6 +28,10 @@ public class Mercado {
 	private CadastroCompra cadastroCompra;
 	@Autowired
 	private CadastroVenda cadastroVenda;
+	@Autowired
+	private CadastroProduto cadastroProduto;
+	@Autowired
+	private CadastoMovimentacaoEstoque cadastroMovimentacaoEstoque;
 	
 	
 	public Fornecedor saveFornecedor(Fornecedor fornecedor) {
@@ -111,5 +121,70 @@ public class Mercado {
 	public void deleteVenda(Venda Venda) {
 		cadastroVenda.delete(Venda);
 	}
+	
+	
+	//Produto
+	
+	
+	public Produto saveProduto(Produto produto) {
+		return cadastroProduto.save(produto);
+	}
+	
+	public Optional<Produto> findProdutoById(long id){
+		return cadastroProduto.findById(id);
+	}
+	
+	public List<Produto> listAllProduto(){
+		return cadastroProduto.listAll();
+	}
+	
+	public Produto updateProduto(Produto antigo,Produto novo) {
+		novo.setId(antigo.getId());
+		return cadastroProduto.save(novo);
+	}
+	
+	public Optional<Produto> findByNomeProduto(String nome){
+		return cadastroProduto.findByNomeProduto(nome);
+	}
+	
+	public Optional<Produto> findByCategoriaProduto(String categoria){
+		return cadastroProduto.findByCategoriaProduto(categoria);
+	}
+	
+	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
+		return cadastroProduto.findByValidadeProduto(validadeProdutoMin,validadeProdutoMax);
+	} 
+	
+	public void deleteProdutoById(Long id) {
+		cadastroProduto.deleteById(id);
+	}
+	
+	public void deleteProduto(Produto produto) {
+		cadastroProduto.delete(produto);
+	}
+	
+	//Movimentacao Estoque
+	
+	public MovimentacaoEstoque saveMovimentacaoEstoque(MovimentacaoEstoque movimentacaoEstoque) {
+		return cadastroMovimentacaoEstoque.save(movimentacaoEstoque);
+	
+	}	
+	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
+		return cadastroMovimentacaoEstoque.findById(id);
+	}
+	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(Date dataMovimentacaoEstoque){
+		return cadastroMovimentacaoEstoque.findByDataMovimentacaoEstoque(dataMovimentacaoEstoque);
+		
+	}
+	
+	public Optional<MovimentacaoEstoque> findByHoraMovimentacaoEstoque(Time horaMovimentacaoEstoque) {
+		return cadastroMovimentacaoEstoque.findByHoraMovimentacaoEstoque(horaMovimentacaoEstoque);
+	}
+	
+	public Optional<MovimentacaoEstoque> findByMotivoMovimentacaoEstoque(String motivoMovimentacaoEstoque) {
+		return cadastroMovimentacaoEstoque.findByMotivoMovimentacaoEstoque(motivoMovimentacaoEstoque);
+	}
+	
+
 	
 }
