@@ -10,41 +10,52 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Mercado_POO.basica.Compra;
+import com.example.Mercado_POO.basica.Fornecedor;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @CrossOrigin(origins="http://localhost:8080/")
 @RestController
 @RequestMapping("/mercado/api/")
-public class ControllerCompra {
+public class ControllerFornecedor {
 	
 	@Autowired
 	private Mercado mercado;
-
-	@PostMapping("compra")
+	
+	@PostMapping("fornecedor")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public Compra criarCompra(@RequestBody Compra compra) {
-		return mercado.saveCompra(compra);
+	public Fornecedor criarFornecedor(@RequestBody Fornecedor fornecedor) {
+		return mercado.saveFornecedor(fornecedor);
 	}
 	
-	@GetMapping("compra")
-	public List<Compra> listarCompras(){
-		return mercado.listAllCompra();
+	@PutMapping("/{id}")
+    public Fornecedor atualizarFornecedor(@RequestBody Fornecedor antigoFornecedor, Fornecedor novoFornecedor) {
+        return mercado.updateFornecedor(antigoFornecedor, novoFornecedor);
+    }
+	
+	@GetMapping("fornecedor")
+	public List<Fornecedor> listarFornecedores(){
+		return mercado.listAllFornecedor();
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<Compra> findById(@PathVariable long id){
-		return mercado.findByIdCompra(id);
+	public Optional<Fornecedor> findById(@PathVariable long id){
+		return mercado.findByIdFornecedor(id);
 	}
 	
-	@GetMapping("/{id}")
-	public Optional<Compra> findByFornecedorId(@PathVariable long idFornecedor){
-		return mercado.findByFornecedorCompraId(idFornecedor);
+	@GetMapping("fornecedor")
+	public Optional<Fornecedor> findByNomeFornecedor(@RequestBody String nome){
+		return mercado.findByNomeFornecedor(nome);
+	}
+	
+	@GetMapping("fornecedor")
+	public Optional<Fornecedor> findByCnpjFornecedor(@RequestBody String cnpj){
+		return mercado.findByCnpjFornecedor(cnpj);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -53,12 +64,11 @@ public class ControllerCompra {
 		mercado.deleteByIdCompra(id);
 	}
 	
-	@DeleteMapping("compra")
+	@DeleteMapping("Fornecedor")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteCompra(Compra compra) {
-		mercado.deleteCompra(compra);
+	public void deleteFornecedor(Fornecedor fornecedor) {
+		mercado.deleteFornecedor(fornecedor);
 	}
 	
-	
-	
+
 }
