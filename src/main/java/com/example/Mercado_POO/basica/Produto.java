@@ -58,6 +58,9 @@ public class Produto{
 	public void setValidade(Date validade) {
 		this.validadeProduto = validade;
 	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public long getId() {
 		return id;
 	}
