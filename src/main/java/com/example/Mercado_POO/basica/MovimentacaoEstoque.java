@@ -1,7 +1,6 @@
 package com.example.Mercado_POO.basica;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +13,13 @@ public class MovimentacaoEstoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private Date data;
-	private Time hora;
+	private LocalDateTime dataHora;
 	private String motivo;
+
 	@ManyToMany
 	private Produto produto;
+
+
+
+
 }

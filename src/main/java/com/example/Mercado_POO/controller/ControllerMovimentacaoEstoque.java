@@ -1,7 +1,6 @@
 package com.example.Mercado_POO.controller;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +34,9 @@ public class ControllerMovimentacaoEstoque {
 		return mercado.findMovimentacaoEstoqueById(id);
 	}
 	@GetMapping("MovimentacaoEstoque")
-	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(Date dataMovimentacaoEstoque){
-		return mercado.findByDataMovimentacaoEstoque(dataMovimentacaoEstoque);
+	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(LocalDateTime dataMovimentacaoEstoqueIni, LocalDateTime dataMovimentacaoEstoqueFim){
+		return mercado.findByDataMovimentacaoEstoque(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
 		
-	}
-	@GetMapping("MovimentacaoEstoque")
-	Optional<MovimentacaoEstoque> findByHoraMovimentacaoEstoque(Time horaMovimentacaoEstoque) {
-		return mercado.findByHoraMovimentacaoEstoque(horaMovimentacaoEstoque);
-	}
-	@GetMapping("MovimentacaoEstoque")
-	Optional<MovimentacaoEstoque> findByMotivoMovimentacaoEstoque(String motivoMovimentacaoEstoque) {
-		return mercado.findByMotivoMovimentacaoEstoque(motivoMovimentacaoEstoque);
 	}
 
 }

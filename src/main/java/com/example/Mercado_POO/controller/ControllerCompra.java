@@ -55,7 +55,7 @@ public class ControllerCompra {
 	
 	@DeleteMapping("compra")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteCompra(Compra compra) {
+	public void deleteCompra(@RequestBody Compra compra) {
 		mercado.deleteCompra(compra);
 	}
 	

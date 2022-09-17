@@ -1,6 +1,6 @@
 package com.example.Mercado_POO.fachada;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -167,22 +167,13 @@ public class Mercado {
 	
 	public MovimentacaoEstoque saveMovimentacaoEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		return cadastroMovimentacaoEstoque.save(movimentacaoEstoque);
-	
 	}	
 	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
 		return cadastroMovimentacaoEstoque.findById(id);
 	}
-	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(Date dataMovimentacaoEstoque){
-		return cadastroMovimentacaoEstoque.findByDataMovimentacaoEstoque(dataMovimentacaoEstoque);
-		
-	}
-	
-	public Optional<MovimentacaoEstoque> findByHoraMovimentacaoEstoque(Time horaMovimentacaoEstoque) {
-		return cadastroMovimentacaoEstoque.findByHoraMovimentacaoEstoque(horaMovimentacaoEstoque);
-	}
-	
-	public Optional<MovimentacaoEstoque> findByMotivoMovimentacaoEstoque(String motivoMovimentacaoEstoque) {
-		return cadastroMovimentacaoEstoque.findByMotivoMovimentacaoEstoque(motivoMovimentacaoEstoque);
+	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(LocalDateTime dataMovimentacaoEstoqueIni, LocalDateTime dataMovimentacaoEstoqueFim){
+		return cadastroMovimentacaoEstoque.findByDataHora(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
+
 	}
 	
 
