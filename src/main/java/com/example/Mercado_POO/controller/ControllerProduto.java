@@ -34,24 +34,24 @@ public class ControllerProduto {
 		return mercado.saveProduto(produto);
 	}
 	
-	@GetMapping("Produto")
+	@GetMapping("Produtos")
 	public List<Produto> listarProdutos(){
 		return mercado.listAllProduto();
 	}
-	@GetMapping("/{id}")
-	public Optional<Produto> findById(@PathVariable long id){
-		return mercado.findProdutoById(id);
+	@GetMapping("/{idProduto}")
+	public Optional<Produto> findById(@PathVariable long idProduto){
+		return mercado.findProdutoById(idProduto);
 	}
-	@GetMapping("Produto")
-	public Optional<Produto> findProdutoByNome(@RequestBody String nome){
+	@GetMapping("/{nome}")
+	public Optional<Produto> findProdutoByNome(@PathVariable String nome){
 		return mercado.findByNomeProduto(nome);
 	}
-	@PutMapping("/{id}")
+	@PutMapping("produtos")
     public Produto atualizarProduto(@RequestBody Produto antigoProduto, Produto novoProduto) {
         return mercado.updateProduto(antigoProduto, novoProduto);
     }
-	@GetMapping("Produto")
-	public Optional<Produto> findByCategoriaProduto(String categoria){
+	@GetMapping("/{categoria}")
+	public Optional<Produto> findByCategoriaProduto(@PathVariable String categoria){
 		return mercado.findByCategoriaProduto(categoria);
 	}
 	@GetMapping("Produto")
@@ -67,7 +67,7 @@ public class ControllerProduto {
 	
 	@DeleteMapping("Produto")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteFornecedor(Produto produto) {
+	public void deleteProduto(Produto produto) {
 		mercado.deleteProduto(produto);
 	}
 	

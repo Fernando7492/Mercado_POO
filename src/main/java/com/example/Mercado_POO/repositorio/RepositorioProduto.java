@@ -20,6 +20,6 @@ public interface RepositorioProduto extends JpaRepository<Produto, Long>{
 	
 	Optional<Produto> findByValidadeProdutoBetween(Date validadeProdutoMin,Date validadeProdutoMax);
 	
-	boolean existByNomeProduto(String nomeProduto);
+	boolean existsByNomeProduto(String nomeProduto);
 	
 }

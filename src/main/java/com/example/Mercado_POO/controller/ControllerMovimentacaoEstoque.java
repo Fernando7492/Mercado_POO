@@ -26,7 +26,7 @@ public class ControllerMovimentacaoEstoque {
 	
 	@PostMapping("MovimentacaoEstoque")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public MovimentacaoEstoque criarFornecedor(@RequestBody MovimentacaoEstoque movimentacaoEstoque) {
+	public MovimentacaoEstoque criarMovimentacaoEstoque(@RequestBody MovimentacaoEstoque movimentacaoEstoque) {
 		return mercado.saveMovimentacaoEstoque(movimentacaoEstoque);
 	}
 	@GetMapping("/{id}")

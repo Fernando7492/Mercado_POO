@@ -18,18 +18,14 @@ public class Vendedor extends Pessoa{
 	private String cargo;
 	private double salario;
 	private Date dataContrato;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Pessoa pessoa;
 
 	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
-			Endereco enderecoPessoa, long id2, String cargo, double salario, Date dataContrato, Pessoa pessoa) {
+			Endereco enderecoPessoa, long id2, String cargo, double salario, Date dataContrato) {
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 		id = id2;
 		this.cargo = cargo;
 		this.salario = salario;
 		this.dataContrato = dataContrato;
-		this.pessoa = pessoa;
 	}
 
 	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
@@ -69,18 +65,10 @@ public class Vendedor extends Pessoa{
 		this.dataContrato = dataContrato;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
 	@Override
 	public String toString() {
 		return "Vendedor [id=" + id + ", cargo=" + cargo + ", salario=" + salario + ", dataContrato=" + dataContrato
-				+ ", pessoa=" + pessoa + "]";
+				+"]";
 	}
 
 }

@@ -37,28 +37,28 @@ public class ControllerVenda {
 		return mercado.listAllVenda();
 	}
 	
-	@GetMapping("/{id}")
-	public Optional<Venda> findById(@PathVariable long id){
-		return mercado.findByIdVenda(id);
+	@GetMapping("/{idVenda}")
+	public Optional<Venda> findById(@PathVariable long idVenda){
+		return mercado.findByIdVenda(idVenda);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{idCliente}")
 	public Optional<Venda> findByClienteId(@PathVariable long idCliente){
 		return mercado.findByClienteVendaId(idCliente);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{idVendedor}")
 	public Optional<Venda> findByVendedorId(@PathVariable long idVendedor){
 		return mercado.findByVendedorVendaId(idVendedor);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idVenda}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(@PathVariable long id) {
-		mercado.deleteByIdVenda(id);
+	public void deleteById(@PathVariable long idVenda) {
+		mercado.deleteByIdVenda(idVenda);
 	}
 	
-	@DeleteMapping("compra")
+	@DeleteMapping("venda")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteVenda(Venda venda) {
 		mercado.deleteVenda(venda);
