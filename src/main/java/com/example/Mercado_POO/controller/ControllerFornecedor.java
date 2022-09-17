@@ -43,25 +43,25 @@ public class ControllerFornecedor {
 		return mercado.listAllFornecedor();
 	}
 	
-	@GetMapping("/{id}")
-	public Optional<Fornecedor> findById(@PathVariable long id){
-		return mercado.findByIdFornecedor(id);
+	@GetMapping("/{idFornecedor}")
+	public Optional<Fornecedor> findByIdFornecedor(@PathVariable long idFornecedor){
+		return mercado.findByIdFornecedor(idFornecedor);
 	}
 	
-	@GetMapping("fornecedor")
+	@GetMapping("nome")
 	public Optional<Fornecedor> findByNomeFornecedor(@RequestBody String nome){
 		return mercado.findByNomeFornecedor(nome);
 	}
 	
-	@GetMapping("fornecedor")
+	@GetMapping("cnpj")
 	public Optional<Fornecedor> findByCnpjFornecedor(@RequestBody String cnpj){
 		return mercado.findByCnpjFornecedor(cnpj);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idFornecedor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(@PathVariable long id) {
-		mercado.deleteByIdCompra(id);
+	public void deleteByIdFornecedor(@PathVariable long idFornecedor) {
+		mercado.deleteByIdFornecedor(idFornecedor);
 	}
 	
 	@DeleteMapping("Fornecedor")

@@ -17,7 +17,7 @@ public class CadastroProduto {
 	private RepositorioProduto repositorioProduto;
 	
 	public Produto save(Produto produto) {
-		if(repositorioProduto.existByNomeProduto(produto.getNomeProduto())) {
+		if(repositorioProduto.existsByNomeProduto(produto.getNomeProduto())) {
 			return null;
 		}
 		else {
