@@ -15,7 +15,7 @@ public class CadastoMovimentacaoEstoque {
 	@Autowired
 	private RepositorioMovimentacaoEstoque repositorioMovimentacaoEstoque;
 	
-	public MovimentacaoEstoque save(MovimentacaoEstoque movimentacaoEstoque) {
+	public MovimentacaoEstoque saveMovimentacaoEstoque(MovimentacaoEstoque movimentacaoEstoque) {
 		return repositorioMovimentacaoEstoque.save(movimentacaoEstoque);
 	}
 	

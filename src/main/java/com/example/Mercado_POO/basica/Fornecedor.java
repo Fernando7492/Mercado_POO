@@ -64,7 +64,6 @@ public class Fornecedor {
 	public void setTelefoneFornecedor(String telefoneFornecedor) {
 		this.telefoneFornecedor = telefoneFornecedor;
 	}
-	
 	public Endereco getEnderecoFornecedor() {
 		return enderecoFornecedor;
 	}

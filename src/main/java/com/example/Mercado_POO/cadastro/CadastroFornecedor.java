@@ -38,11 +38,11 @@ public class CadastroFornecedor {
 	}
 	
 	public Optional<Fornecedor> findByNomeFornecedor(String nome){
-		return repositorioFornecedor.findByNomeFornecedor(nome);
+		return repositorioFornecedor.findByNomeFornecedorContainingIgnoreCase(nome);
 	}
 	
 	public Optional<Fornecedor> findByCnpjFornecedor(String cnpj) {
-		return repositorioFornecedor.findByCnpjFornecedor(cnpj);
+		return repositorioFornecedor.findByCnpjFornecedorContainingIgnoreCase(cnpj);
 	}
 	
 	public void deleteById(Long id) {

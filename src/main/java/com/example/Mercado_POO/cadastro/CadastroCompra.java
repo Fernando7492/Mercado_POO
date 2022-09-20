@@ -15,7 +15,7 @@ public class CadastroCompra {
 	@Autowired
 	private RepositorioCompra repositorioCompra;
 	
-	public Compra save(Compra compra) {
+	public Compra saveCompra(Compra compra) {
 		return repositorioCompra.save(compra);
 	}	
 	
@@ -28,8 +28,7 @@ public class CadastroCompra {
 	}
 	
 	public Optional<Compra> findByFornecedorCompraId(Long fornecedorId){
-		return repositorioCompra.findByFornecedorCompraId(fornecedorId);
-		
+		return repositorioCompra.findByFornecedorCompraId(fornecedorId);	
 	}
 	
 	public void deleteById(Long id) {
