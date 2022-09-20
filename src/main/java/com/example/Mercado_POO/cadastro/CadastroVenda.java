@@ -15,7 +15,7 @@ public class CadastroVenda {
 	@Autowired
 	private RepositorioVenda repositorioVenda;
 	
-	public Venda save(Venda Venda) {
+	public Venda saveVenda(Venda Venda) {
 		return repositorioVenda.save(Venda);
 	}	
 	

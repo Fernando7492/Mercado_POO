@@ -33,7 +33,7 @@ public class ControllerFornecedor {
 		return mercado.saveFornecedor(fornecedor);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("atualizarFornecedor")
     public Fornecedor atualizarFornecedor(@RequestBody Fornecedor antigoFornecedor, Fornecedor novoFornecedor) {
         return mercado.updateFornecedor(antigoFornecedor, novoFornecedor);
     }
@@ -48,7 +48,7 @@ public class ControllerFornecedor {
 		return mercado.findByIdFornecedor(idFornecedor);
 	}
 	
-	@GetMapping("nome")
+	@GetMapping("nomeFornecedor")
 	public Optional<Fornecedor> findByNomeFornecedor(@RequestBody String nome){
 		return mercado.findByNomeFornecedor(nome);
 	}

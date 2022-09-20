@@ -10,9 +10,11 @@ import com.example.Mercado_POO.basica.Cliente;
 @Repository
 public interface RepositorioCliente extends JpaRepository<Cliente, Long>{
 
-	Optional<Cliente> findByCpf(String cpf);
+	Optional<Cliente> findByCpfContainingIgnoreCase(String cpf);
 	
-	Optional<Cliente> findByNome(String nome);
+	Optional<Cliente> findByNomeContainingIgnoreCase(String nome);
+	
+	boolean existsByCpf(String cpf);
 	
 	
 }

@@ -18,8 +18,7 @@ public class Compra {
 	@ManyToOne
 	@JoinColumn(name="fornecedor_id")
 	private Fornecedor fornecedorCompra;
-	
-	//estudar annotation onetomany
+
 	@OneToMany
 	@JoinColumn(name="compra_id")
 	private List<ProdutoCompra> produtosCompra;
@@ -57,10 +56,6 @@ public class Compra {
 		return valorTotalCompra;
 	}
 
-	public void setValorTotalCompra(BigDecimal valorTotalCompra) {
-		this.valorTotalCompra = valorTotalCompra;
-	}
-
 	public Fornecedor getFornecedorCompra() {
 		return fornecedorCompra;
 	}
@@ -75,15 +70,23 @@ public class Compra {
 
 	public void setProdutosCompra(List<ProdutoCompra> produtosCompra) {
 		this.produtosCompra = produtosCompra;
+		calcularValor();
 	}
 	
 	public void adicionarProduto(ProdutoCompra produto) {
 		this.produtosCompra.add(produto);
+		calcularValor();
 	}
 	
 	public void removerProdutos(ProdutoCompra produto) {
 		this.produtosCompra.remove(produto);
-
+		calcularValor();
+	}
+	
+	public void calcularValor() {
+		for(ProdutoCompra produto:produtosCompra) {
+			valorTotalCompra = produto.getValorTotal().add(valorTotalCompra);
+		}
 	}
 
 	@Override

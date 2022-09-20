@@ -68,10 +68,6 @@ public class Venda {
 		return valorTotalVenda;
 	}
 
-	public void setValorTotalVenda(BigDecimal valorTotalVenda) {
-		this.valorTotalVenda = valorTotalVenda;
-	}
-
 	public Cliente getClienteVenda() {
 		return clienteVenda;
 	}
@@ -93,15 +89,23 @@ public class Venda {
 
 	public void setProdutosVenda(List<ProdutoVenda> produtosVenda) {
 		this.produtosVenda = produtosVenda;
+		calcularValor();
 	}
 	
 	public void adicionarProduto(ProdutoVenda produto) {
 		this.produtosVenda.add(produto);
+		calcularValor();
 	}
 	
 	public void removerProdutos(ProdutoVenda produto) {
 		this.produtosVenda.remove(produto);
-
+		calcularValor();
+	}
+	
+	public void calcularValor() {
+		for(ProdutoVenda produto: produtosVenda) {
+			valorTotalVenda = produto.getValorTotal().add(valorTotalVenda);
+		}
 	}
 
 	@Override

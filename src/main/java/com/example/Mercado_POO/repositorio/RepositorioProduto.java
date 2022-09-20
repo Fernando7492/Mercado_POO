@@ -12,9 +12,9 @@ import com.example.Mercado_POO.basica.Produto;
 public interface RepositorioProduto extends JpaRepository<Produto, Long>{
 	
 	
-	Optional<Produto> findByNomeProdutoContaining(String nomeProduto);
+	Optional<Produto> findByNomeProdutoContainingIgnoreCase(String nomeProduto);
 	
-	Optional<Produto> findByCategoriaProduto(String categoriaProduto);
+	Optional<Produto> findByCategoriaProdutoContainingIgnoreCase(String categoriaProduto);
 	
 	Optional<Produto> findByQuantidadeProduto(Integer quantidadeProduto);
 	

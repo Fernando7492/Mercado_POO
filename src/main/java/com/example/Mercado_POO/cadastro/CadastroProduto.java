@@ -40,11 +40,11 @@ public class CadastroProduto {
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
-		return repositorioProduto.findByNomeProdutoContaining(nome);
+		return repositorioProduto.findByNomeProdutoContainingIgnoreCase(nome);
 	}
 	
 	public Optional<Produto> findByCategoriaProduto(String categoria){
-		return repositorioProduto.findByCategoriaProduto(categoria);
+		return repositorioProduto.findByCategoriaProdutoContainingIgnoreCase(categoria);
 	}
 	
 	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
