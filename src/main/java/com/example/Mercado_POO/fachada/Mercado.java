@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Compra;
+import com.example.Mercado_POO.basica.Endereco;
 import com.example.Mercado_POO.basica.Fornecedor;
 import com.example.Mercado_POO.basica.MovimentacaoEstoque;
 import com.example.Mercado_POO.basica.Produto;
@@ -18,6 +19,7 @@ import com.example.Mercado_POO.basica.Vendedor;
 import com.example.Mercado_POO.cadastro.CadastoMovimentacaoEstoque;
 import com.example.Mercado_POO.cadastro.CadastroCliente;
 import com.example.Mercado_POO.cadastro.CadastroCompra;
+import com.example.Mercado_POO.cadastro.CadastroEndereco;
 import com.example.Mercado_POO.cadastro.CadastroFornecedor;
 import com.example.Mercado_POO.cadastro.CadastroProduto;
 import com.example.Mercado_POO.cadastro.CadastroVenda;
@@ -40,6 +42,8 @@ public class Mercado {
 	private CadastroCliente cadastroCliente;
 	@Autowired
 	private CadastroVendedor cadastroVendedor;
+	@Autowired
+	private CadastroEndereco cadastroEndereco;
 	
 	//Fornecedor
 	
@@ -252,5 +256,11 @@ public class Mercado {
 	
 	public void deleteVendedor(Vendedor vendedor) {
 		cadastroVendedor.delete(vendedor);
+	}
+	
+	//endereco
+	
+	public Endereco saveEndereco(Endereco endereco) {
+		return cadastroEndereco.saveEndereco(endereco);
 	}
 }

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 @Entity
 public class Cliente extends Pessoa{
 	
-	
+	public Cliente() {
+		super();
+	}
 
 }
