@@ -28,6 +28,14 @@ public class Vendedor extends Pessoa{
 		this.dataContrato = dataContrato;
 	}
 
+	
+	
+	public Vendedor() {
+		super();
+	}
+
+
+
 	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
 			Endereco enderecoPessoa) {
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
