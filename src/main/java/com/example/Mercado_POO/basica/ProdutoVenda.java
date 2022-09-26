@@ -25,6 +25,13 @@ public class ProdutoVenda {
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 	
+	public ProdutoVenda(Integer qtdProdutos, Date validade, Produto produto) {
+		super();
+		this.qtdProdutos = qtdProdutos;
+		this.produto = produto;
+		this.validade = this.produto.getValidade();
+	}
+	
 	public void calcularValorTotal() {
 		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));
 	}
@@ -61,12 +68,7 @@ public class ProdutoVenda {
 		return validade;
 	}
 
-	public ProdutoVenda(Integer qtdProdutos, Date validade, Produto produto) {
-		super();
-		this.qtdProdutos = qtdProdutos;
-		this.produto = produto;
-		this.validade = this.produto.getValidade();
-	}
+	
 
 	@Override
 	public String toString() {
