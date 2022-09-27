@@ -15,48 +15,81 @@ public class Produto{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nomeProduto;
-	private String categoriaProduto;
-	private BigDecimal valorCompraProduto;
-	private BigDecimal valorVendaProduto;
-	private Integer quantidadeProduto;
-	private Date validadeProduto;
+	private String nome;
+	private String categoria;
+	private BigDecimal valorCompra;
+	private BigDecimal valorVenda;
+	private Integer quantidade;
+	private Date validade;
 	
-	public String getNomeProduto() {
-		return nomeProduto;
+	public Produto(String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda, int quantidade,
+			Date validade) {
+		super();
+		this.nome = nome;
+		this.categoria = categoria;
+		this.valorCompra = valorCompra;
+		this.valorVenda = valorVenda;
+		this.quantidade = quantidade;
+		this.validade = validade;
 	}
-	public void setNomeProduto(String nome) {
-		this.nomeProduto = nome;
+	
+	
+	
+	public Produto(long id, String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda,
+			Integer quantidade, Date validade) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.categoria = categoria;
+		this.valorCompra = valorCompra;
+		this.valorVenda = valorVenda;
+		this.quantidade = quantidade;
+		this.validade = validade;
+	}
+
+
+
+	public Produto() {
+		super();
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public String getCategoria() {
-		return categoriaProduto;
+		return categoria;
 	}
-	public void setCategoria(String categoriaProduto) {
-		this.categoriaProduto = categoriaProduto;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	public BigDecimal getValorCompra() {
-		return valorCompraProduto;
+		return valorCompra;
 	}
 	public void setValorCompra(BigDecimal valorCompra) {
-		this.valorCompraProduto = valorCompra;
+		this.valorCompra = valorCompra;
 	}
 	public BigDecimal getValorVenda() {
-		return valorVendaProduto;
+		return valorVenda;
 	}
 	public void setValorVenda(BigDecimal valorVenda) {
-		this.valorVendaProduto = valorVenda;
+		this.valorVenda = valorVenda;
 	}
 	public int getQuantidade() {
-		return quantidadeProduto;
+		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidadeProduto = quantidade;
+		this.quantidade = quantidade;
 	}
 	public Date getValidade() {
-		return validadeProduto;
+		return validade;
 	}
 	public void setValidade(Date validade) {
-		this.validadeProduto = validade;
+		this.validade = validade;
 	}
 	public void setId(long id) {
 		this.id = id;
@@ -64,19 +97,10 @@ public class Produto{
 	public long getId() {
 		return id;
 	}
-	public Produto(String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda, int quantidade,
-			Date validade) {
-		super();
-		this.nomeProduto = nome;
-		this.categoriaProduto = categoria;
-		this.valorCompraProduto = valorCompra;
-		this.valorVendaProduto = valorVenda;
-		this.quantidadeProduto = quantidade;
-		this.validadeProduto = validade;
-	}
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoriaProduto, id, nomeProduto, quantidadeProduto, validadeProduto, valorCompraProduto, valorVendaProduto);
+		return Objects.hash(categoria, id, nome, quantidade, validade, valorCompra, valorVenda);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -87,13 +111,13 @@ public class Produto{
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return Objects.equals(categoriaProduto, other.categoriaProduto) && id == other.id && Objects.equals(nomeProduto, other.nomeProduto)
-				&& quantidadeProduto == other.quantidadeProduto && Objects.equals(validadeProduto, other.validadeProduto)
-				&& Objects.equals(valorCompraProduto, other.valorCompraProduto) && Objects.equals(valorVendaProduto, other.valorVendaProduto);
+		return Objects.equals(categoria, other.categoria) && id == other.id && Objects.equals(nome, other.nome)
+				&& quantidade == other.quantidade && Objects.equals(validade, other.validade)
+				&& Objects.equals(valorCompra, other.valorCompra) && Objects.equals(valorVenda, other.valorVenda);
 	}
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nomeProduto + ", categoria=" + categoriaProduto + ", valorCompra=" + valorCompraProduto
-				+ ", valorVenda=" + valorVendaProduto + ", quantidade=" + quantidadeProduto + ", validade=" + validadeProduto + "]";
+		return "Produto [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", valorCompra=" + valorCompra
+				+ ", valorVenda=" + valorVenda + ", quantidade=" + quantidade + ", validade=" + validade + "]";
 	}	
 }

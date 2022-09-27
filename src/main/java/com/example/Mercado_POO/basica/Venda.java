@@ -19,8 +19,9 @@ public class Venda {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private LocalDateTime dataHoraVenda;
-	private BigDecimal valorTotalVenda;
+	private LocalDateTime horaVenda;
+	private BigDecimal valorTotal;
+	private String formaPagamento;
 	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
@@ -38,15 +39,33 @@ public class Venda {
 		super();
 	}
 
-	public Venda(LocalDateTime dataHoraVenda, BigDecimal valorTotalVenda,
+	
+
+	public Venda(long id, LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
-		this.dataHoraVenda = dataHoraVenda;
-		this.valorTotalVenda = valorTotalVenda;
+		this.id = id;
+		this.horaVenda = horaVenda;
+		this.valorTotal = valorTotal;
+		this.formaPagamento = formaPagamento;
 		this.clienteVenda = clienteVenda;
 		this.vendedorVenda = vendedorVenda;
 		this.produtosVenda = produtosVenda;
 	}
+
+
+
+	public String getFormaPagamento() {
+		return formaPagamento;
+	}
+
+
+
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+
 
 	public long getId() {
 		return id;
@@ -56,16 +75,16 @@ public class Venda {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataHoraVenda() {
-		return dataHoraVenda;
+	public LocalDateTime getHoraVenda() {
+		return horaVenda;
 	}
 
-	public void setDataHoraVenda(LocalDateTime dataHoraVenda) {
-		this.dataHoraVenda = dataHoraVenda;
+	public void setHoraVenda(LocalDateTime horaVenda) {
+		this.horaVenda = horaVenda;
 	}
 
-	public BigDecimal getValorTotalVenda() {
-		return valorTotalVenda;
+	public BigDecimal getValorTotal() {
+		return valorTotal;
 	}
 
 	public Cliente getClienteVenda() {
@@ -104,14 +123,14 @@ public class Venda {
 	
 	public void calcularValor() {
 		for(ProdutoVenda produto: produtosVenda) {
-			valorTotalVenda = produto.getValorTotal().add(valorTotalVenda);
+			valorTotal = produto.getValorTotal().add(valorTotal);
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Venda [id=" + id + ", dataHoraVenda=" + dataHoraVenda + ", valorTotalVenda="
-				+ valorTotalVenda + ", clienteVenda=" + clienteVenda + ", vendedorVenda=" + vendedorVenda + "]";
+		return "Venda [id=" + id + ", dataHoraVenda=" + horaVenda + ", valorTotalVenda="
+				+ valorTotal + ", clienteVenda=" + clienteVenda + ", vendedorVenda=" + vendedorVenda + "]";
 	}
 	
 }

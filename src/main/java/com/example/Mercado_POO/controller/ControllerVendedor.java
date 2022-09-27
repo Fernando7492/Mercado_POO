@@ -42,8 +42,8 @@ public class ControllerVendedor {
 	
 	//@PostMapping("cadastrar")
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public ResponseEntity<Object> cadastrarVendedor(@RequestBody String dados) throws JSONException, ParseException{
-		Date data = new Date();
+	public ResponseEntity<Object> cadastrarVendedor(@RequestBody Vendedor vendedor) throws JSONException, ParseException{
+		/*Date data = new Date();
 		JSONObject obj = new JSONObject(dados);
 		String nome = obj.getString("nome");
 		String cpf = obj.getString("cpf");
@@ -63,7 +63,7 @@ public class ControllerVendedor {
 		vendedor.setCargo(cargo);
 		vendedor.setSalario(salario);
 		vendedor.setDataContrato(dataContrato);
-		vendedor.setEnderecoPessoa(endereco);
+		vendedor.setEnderecoPessoa(endereco);*/
 		if(mercado.saveVendedor(vendedor) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");

@@ -27,10 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Endereco;
-import com.example.Mercado_POO.basica.Pessoa;
 import com.example.Mercado_POO.fachada.Mercado;
 
-//@CrossOrigin(origins="http://localhost:8080/")
 @RestController
 @RequestMapping("/cliente")
 public class ControllerCliente {
@@ -40,25 +38,8 @@ public class ControllerCliente {
 	@Autowired
 	private ControllerEndereco controllerEndereco;
 	
-	//@PostMapping("cadastrar")
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public ResponseEntity<Object> cadastrarCliente(@RequestBody String dados) throws JSONException, ParseException{
-		Date data = new Date();
-		JSONObject obj = new JSONObject(dados);
-		String nome = obj.getString("nome");
-		String cpf = obj.getString("cpf");
-		String sexo = obj.getString("sexo");
-		Date dataNascimento = parseDate(obj.getString("dataNascimento"));
-		String email = obj.getString("email");
-		Endereco endereco =  controllerEndereco.cadastrarEndereco(dados);
-		//Cliente cliente = (Cliente) new Pessoa(nome,cpf,sexo,dataNascimento,email,endereco);
-		Cliente cliente = new Cliente();
-		cliente.setNome(nome);
-		cliente.setCpf(cpf);
-		cliente.setSexo(sexo);
-		cliente.setDataNascimento(dataNascimento);
-		cliente.setEmail(email);
-		cliente.setEnderecoPessoa(endereco);
+	public ResponseEntity<Object> cadastrarCliente(@RequestBody Cliente cliente) throws JSONException, ParseException{
 		if(mercado.saveCliente(cliente) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");

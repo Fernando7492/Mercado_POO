@@ -40,16 +40,7 @@ public class ControllerFornecedor {
 	private ControllerEndereco controllerEndereco;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public ResponseEntity<Object> cadastrarFornecedor(@RequestBody String dados) throws JSONException, ParseException{
-		Date data = new Date();
-		JSONObject obj = new JSONObject(dados);
-		String nome = obj.getString("nome");
-		String cnpj = obj.getString("cnpj");
-		String telefone = obj.getString("telefone");
-		String email = obj.getString("email");
-		Endereco endereco =  controllerEndereco.cadastrarEndereco(dados);
-		//Cliente cliente = (Cliente) new Pessoa(nome,cpf,sexo,dataNascimento,email,endereco);
-		Fornecedor fornecedor = new Fornecedor(nome, cnpj, email, telefone, endereco);
+	public ResponseEntity<Object> cadastrarFornecedor(@RequestBody Fornecedor fornecedor) throws JSONException, ParseException{
 		if(mercado.saveFornecedor(fornecedor) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");

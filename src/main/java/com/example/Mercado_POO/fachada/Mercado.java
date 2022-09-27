@@ -157,15 +157,15 @@ public class Mercado {
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
-		return cadastroProduto.findByNomeProduto(nome);
+		return cadastroProduto.findByNome(nome);
 	}
 	
 	public Optional<Produto> findByCategoriaProduto(String categoria){
-		return cadastroProduto.findByCategoriaProduto(categoria);
+		return cadastroProduto.findByCategoria(categoria);
 	}
 	
 	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
-		return cadastroProduto.findByValidadeProduto(validadeProdutoMin,validadeProdutoMax);
+		return cadastroProduto.findByValidade(validadeProdutoMin,validadeProdutoMax);
 	} 
 	
 	public void deleteProdutoById(Long id) {

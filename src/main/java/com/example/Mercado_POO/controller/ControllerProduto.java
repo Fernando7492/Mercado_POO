@@ -41,16 +41,7 @@ public class ControllerProduto {
 	private Mercado mercado;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public ResponseEntity<Object> cadastrarProduto(@RequestBody String dados) throws JSONException, ParseException{
-		Date data = new Date();
-		JSONObject obj = new JSONObject(dados);
-		String nome = obj.getString("nome");
-		String categoria = obj.getString("categoria");
-		BigDecimal vVenda = new BigDecimal(obj.getDouble("vVenda"));
-		BigDecimal vCompra = new BigDecimal(obj.getDouble("vCompra"));
-		int quantidade = obj.getInt("quantidade");
-		Date validade = parseDate(obj.getString("validade"));
-		Produto produto = new Produto(nome, categoria, vCompra, vVenda, quantidade, validade);
+	public ResponseEntity<Object> cadastrarProduto(@RequestBody Produto produto) throws JSONException, ParseException{
 		if(mercado.saveProduto(produto) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");
@@ -62,7 +53,7 @@ public class ControllerProduto {
 		}
 	}
 	
-	@GetMapping("Produtos")
+	@GetMapping("listarTodos")
 	public List<Produto> listarProdutos(){
 		return mercado.listAllProduto();
 	}
