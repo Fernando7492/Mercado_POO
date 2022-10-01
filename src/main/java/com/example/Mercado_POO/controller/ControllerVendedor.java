@@ -43,7 +43,7 @@ public class ControllerVendedor {
 		return mercado.listAllVendedor();
 	}
 	
-	@GetMapping("/{idVendedor}")
+	@GetMapping("/vendedor{idVendedor}")
 	public Optional<Vendedor> findByIdVendedor(@PathVariable long idVendedor){
 		return mercado.findByIdVendedor(idVendedor);
 	}
@@ -58,7 +58,7 @@ public class ControllerVendedor {
 		return mercado.findByCpfVendedor(cpf);
 	}
 	
-	@DeleteMapping("/{idVendedor}")
+	@DeleteMapping("/vendedor{idVendedor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteByIdVendedor(@PathVariable long idVendedor) {
 		mercado.deleteByIdVendedor(idVendedor);

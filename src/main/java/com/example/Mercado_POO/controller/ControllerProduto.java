@@ -38,7 +38,7 @@ public class ControllerProduto {
 	public List<Produto> listarProdutos(){
 		return mercado.listAllProduto();
 	}
-	@GetMapping("/{idProduto}")
+	@GetMapping("/produto{idProduto}")
 	public Optional<Produto> findById(@PathVariable long idProduto){
 		return mercado.findProdutoById(idProduto);
 	}
@@ -59,7 +59,7 @@ public class ControllerProduto {
 		return mercado.findByValidadeProduto(validadeProdutoMin,validadeProdutoMax);
 	} 
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/produto{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable long id) {
 		mercado.deleteProdutoById(id);

@@ -50,7 +50,11 @@ public class Produto{
 		return quantidadeProduto;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidadeProduto = quantidade;
+		if(quantidade<0) {
+			this.quantidadeProduto=0;
+		}else {
+			this.quantidadeProduto = quantidade;
+		}
 	}
 	public Date getValidade() {
 		return validadeProduto;
@@ -87,9 +91,7 @@ public class Produto{
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return Objects.equals(categoriaProduto, other.categoriaProduto) && id == other.id && Objects.equals(nomeProduto, other.nomeProduto)
-				&& quantidadeProduto == other.quantidadeProduto && Objects.equals(validadeProduto, other.validadeProduto)
-				&& Objects.equals(valorCompraProduto, other.valorCompraProduto) && Objects.equals(valorVendaProduto, other.valorVendaProduto);
+		return Objects.equals(nomeProduto, other.nomeProduto);
 	}
 	@Override
 	public String toString() {

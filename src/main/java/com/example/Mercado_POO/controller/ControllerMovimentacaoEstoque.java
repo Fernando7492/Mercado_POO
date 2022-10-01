@@ -29,7 +29,7 @@ public class ControllerMovimentacaoEstoque {
 	public MovimentacaoEstoque criarMovimentacaoEstoque(@RequestBody MovimentacaoEstoque movimentacaoEstoque) {
 		return mercado.saveMovimentacaoEstoque(movimentacaoEstoque);
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/estoque{id}")
 	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
 		return mercado.findMovimentacaoEstoqueById(id);
 	}

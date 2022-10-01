@@ -33,6 +33,10 @@ public class Vendedor extends Pessoa{
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 	}
 
+	public Vendedor() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

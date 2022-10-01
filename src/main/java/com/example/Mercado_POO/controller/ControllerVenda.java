@@ -42,12 +42,12 @@ public class ControllerVenda {
 		return mercado.findByIdVenda(idVenda);
 	}
 	
-	@GetMapping("/{idClienteVenda}")
+	@GetMapping("/cliente/venda{idClienteVenda}")
 	public Optional<Venda> findByClienteId(@PathVariable long idClienteVenda){
 		return mercado.findByClienteVendaId(idClienteVenda);
 	}
 	
-	@GetMapping("/{idVendedorVenda}")
+	@GetMapping("/vendedor/venda{idVendedorVenda}")
 	public Optional<Venda> findByVendedorId(@PathVariable long idVendedorVenda){
 		return mercado.findByVendedorVendaId(idVendedorVenda);
 	}

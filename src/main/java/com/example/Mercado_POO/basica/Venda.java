@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,15 +23,15 @@ public class Venda {
 	private LocalDateTime dataHoraVenda;
 	private BigDecimal valorTotalVenda;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="cliente_id")
 	private Cliente clienteVenda;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="vendedor_id")
 	private Vendedor vendedorVenda;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="venda_id")
 	private List<ProdutoVenda> produtosVenda;
 	

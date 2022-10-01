@@ -43,7 +43,7 @@ public class ControllerCliente {
 		return mercado.listAllCliente();
 	}
 	
-	@GetMapping("/{idCliente}")
+	@GetMapping("/cliente{idCliente}")
 	public Optional<Cliente> findByIdCliente(@PathVariable long idCliente){
 		return mercado.findByIdCliente(idCliente);
 	}
@@ -58,7 +58,7 @@ public class ControllerCliente {
 		return mercado.findByCpfCliente(cpf);
 	}
 	
-	@DeleteMapping("/{idCliente}")
+	@DeleteMapping("/deleteCliente{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteByIdCliente(@PathVariable long idCliente) {
 		mercado.deleteByIdCliente(idCliente);
