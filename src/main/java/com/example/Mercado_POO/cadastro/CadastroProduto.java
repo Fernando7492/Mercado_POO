@@ -17,7 +17,7 @@ public class CadastroProduto {
 	private RepositorioProduto repositorioProduto;
 	
 	public Produto save(Produto produto) {
-		if(repositorioProduto.existsByNomeProduto(produto.getNomeProduto())) {
+		if(repositorioProduto.existsByNome(produto.getNome())) {
 			return null;
 		}
 		else {
@@ -39,16 +39,16 @@ public class CadastroProduto {
 		return repositorioProduto.save(novo);
 	}
 	
-	public Optional<Produto> findByNomeProduto(String nome){
-		return repositorioProduto.findByNomeProdutoContainingIgnoreCase(nome);
+	public Optional<Produto> findByNome(String nome){
+		return repositorioProduto.findByNomeContainingIgnoreCase(nome);
 	}
 	
-	public Optional<Produto> findByCategoriaProduto(String categoria){
-		return repositorioProduto.findByCategoriaProdutoContainingIgnoreCase(categoria);
+	public Optional<Produto> findByCategoria(String categoria){
+		return repositorioProduto.findByCategoriaContainingIgnoreCase(categoria);
 	}
 	
-	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
-		return repositorioProduto.findByValidadeProdutoBetween(validadeProdutoMin,validadeProdutoMax);
+	public Optional<Produto> findByValidade(Date validadeProdutoMin,Date validadeProdutoMax){
+		return repositorioProduto.findByValidadeBetween(validadeProdutoMin,validadeProdutoMax);
 	} 
 	
 	public void deleteById(Long id) {

@@ -25,30 +25,6 @@ public class MercadoPooApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext conf = SpringApplication.run(MercadoPooApplication.class, args);
-		
-		Mercado mercado = conf.getBean(Mercado.class);
-		
-		Endereco end = new Endereco("rua a", "pe", "brejao", "centro", "79", "55325-000");
-		
-		Vendedor vend = new Vendedor("pedro","12345","m",new Date(0), "email@mail.com",end);
-		
-		Cliente cli = new Cliente("pedro","12345","m",new Date(0), "email@mail.com",end);
-		
-		Produto prod = new Produto("produto1", "geral", new BigDecimal(10.0), new BigDecimal(15.0), 1, new Date(10));
-		
-		ProdutoVenda prodvend = new ProdutoVenda(1, new Date(10), prod);
-		
-		List<ProdutoVenda> prods = new ArrayList();
-		prods.add(prodvend);
-		
-		Venda venda = new Venda(LocalDateTime.now(),  new BigDecimal(15.0), cli, vend, prods);
-		
-		//mercado.saveCliente(cli);
-		//mercado.saveVendedor(vend);
-		
-		//mercado.saveVenda(venda);
-		
-		
 	}
 
 }

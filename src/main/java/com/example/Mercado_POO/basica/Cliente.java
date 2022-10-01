@@ -10,10 +10,8 @@ import javax.persistence.Id;
 @Entity
 public class Cliente extends Pessoa{
 	
-	public Cliente(String nome, String cpf, String sexo, Date dataNascimento, String email,
-			Endereco enderecoPessoa) {
-		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+	public Cliente() {
+		super();
 	}
-	
 
 }
