@@ -28,14 +28,14 @@ public class CadastroFornecedor {
 		return repositorioFornecedor.findAll();
 	}
 	
-	public Fornecedor update(long antigoId, Fornecedor novo) {
-		if(repositorioFornecedor.existsByCnpjFornecedor(novo.getCnpjFornecedor())) {
-			return null;
-		}	
-		else {
-			novo.setId(antigoId);
+	public Fornecedor update(Fornecedor novo) {
+		//if(repositorioFornecedor.existsByCnpjFornecedor(novo.getCnpjFornecedor())) {
+		//	return null;
+		//}	
+		//else {
+			//novo.setId(antigoId);
 			return repositorioFornecedor.save(novo);
-		}
+		//}
 	}
 	
 	public Optional<Fornecedor> findById(Long id) {

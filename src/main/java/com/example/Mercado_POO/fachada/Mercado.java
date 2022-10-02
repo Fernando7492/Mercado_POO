@@ -53,8 +53,8 @@ public class Mercado {
 		return cadastroFornecedor.listAll();
 	}
 	
-	public Fornecedor updateFornecedor(long antigoId, Fornecedor novo) {
-		return cadastroFornecedor.update(antigoId, novo);
+	public Fornecedor updateFornecedor( Fornecedor novo) {
+		return cadastroFornecedor.update( novo);
 	}
 	
 	public Optional<Fornecedor> findByIdFornecedor(Long id) {
