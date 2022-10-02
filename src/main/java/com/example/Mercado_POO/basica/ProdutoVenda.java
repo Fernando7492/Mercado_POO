@@ -33,6 +33,10 @@ public class ProdutoVenda {
 		this.validade = this.produto.getValidade();
 	}
 	
+	public ProdutoVenda() {
+		super();
+	}
+	
 	public void calcularValorTotal() {
 		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));
 	}

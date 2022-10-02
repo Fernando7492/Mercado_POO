@@ -22,7 +22,7 @@ public class MovimentacaoEstoque {
 	private String motivo;
 	private int quantidade;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 
