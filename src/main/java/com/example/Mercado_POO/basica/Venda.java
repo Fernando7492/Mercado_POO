@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,15 +24,15 @@ public class Venda {
 	private BigDecimal valorTotal;
 	private String formaPagamento;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="cliente_id")
 	private Cliente clienteVenda;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="vendedor_id")
 	private Vendedor vendedorVenda;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="venda_id")
 	private List<ProdutoVenda> produtosVenda;
 	
@@ -39,12 +40,9 @@ public class Venda {
 		super();
 	}
 
-	
-
-	public Venda(long id, LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
+	public Venda(LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
-		this.id = id;
 		this.horaVenda = horaVenda;
 		this.valorTotal = valorTotal;
 		this.formaPagamento = formaPagamento;
@@ -53,19 +51,13 @@ public class Venda {
 		this.produtosVenda = produtosVenda;
 	}
 
-
-
 	public String getFormaPagamento() {
 		return formaPagamento;
 	}
 
-
-
 	public void setFormaPagamento(String formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
-
-
 
 	public long getId() {
 		return id;

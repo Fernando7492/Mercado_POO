@@ -15,12 +15,12 @@ public class CadastroVendedor {
 	@Autowired
 	private RepositorioVendedor repositorioVendedor;
 	
-	public Vendedor save(Vendedor Vendedor) {
-		if(repositorioVendedor.existsByCpf(Vendedor.getCpf())) {
+	public Vendedor save(Vendedor vendedor) {
+		if(repositorioVendedor.existsByCpf(vendedor.getCpf())) {
 			return null;
 		}	
 		else {
-			return repositorioVendedor.save(Vendedor);
+			return repositorioVendedor.save(vendedor);
 		}
 	}
 	
@@ -28,9 +28,14 @@ public class CadastroVendedor {
 		return repositorioVendedor.findAll();
 	}
 	
-	public Vendedor update(Vendedor antigo, Vendedor novo) {
-		novo.setId(antigo.getId());
-		return repositorioVendedor.save(novo);
+	public Vendedor update(long antigoId, Vendedor novo) {
+		if(repositorioVendedor.existsByCpf(novo.getCpf())) {
+			return null;
+		}	
+		else {
+			novo.setId(antigoId);			
+			return repositorioVendedor.save(novo);
+		}
 	}
 	
 	public Optional<Vendedor> findById(Long id) {
@@ -49,7 +54,7 @@ public class CadastroVendedor {
 		repositorioVendedor.deleteById(id);
 	}
 	
-	public void delete(Vendedor Vendedor) {
-		repositorioVendedor.delete(Vendedor);
+	public void delete(Vendedor vendedor) {
+		repositorioVendedor.delete(vendedor);
 	}
 }

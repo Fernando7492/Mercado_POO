@@ -57,7 +57,7 @@ public class ControllerProduto {
 	public List<Produto> listarProdutos(){
 		return mercado.listAllProduto();
 	}
-	@GetMapping("/{idProduto}")
+	@GetMapping("/produto{idProduto}")
 	public Optional<Produto> findById(@PathVariable long idProduto){
 		return mercado.findProdutoById(idProduto);
 	}
@@ -66,8 +66,8 @@ public class ControllerProduto {
 		return mercado.findByNomeProduto(nome);
 	}
 	@PutMapping("produtos")
-    public Produto atualizarProduto(@RequestBody Produto antigoProduto, Produto novoProduto) {
-        return mercado.updateProduto(antigoProduto, novoProduto);
+    public Produto atualizarProduto(@RequestBody long antigoProdutoId, Produto novoProduto) {
+        return mercado.updateProduto(antigoProdutoId, novoProduto);
     }
 	@GetMapping("/{categoria}")
 	public Optional<Produto> findByCategoriaProduto(@PathVariable String categoria){
@@ -78,7 +78,7 @@ public class ControllerProduto {
 		return mercado.findByValidadeProduto(validadeProdutoMin,validadeProdutoMax);
 	} 
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/produto{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable long id) {
 		mercado.deleteProdutoById(id);

@@ -15,12 +15,12 @@ public class CadastroCliente {
 	@Autowired
 	private RepositorioCliente repositorioCliente;
 	
-	public Cliente save(Cliente Cliente) {
-		if(repositorioCliente.existsByCpf(Cliente.getCpf())) {
+	public Cliente save(Cliente cliente) {
+		if(repositorioCliente.existsByCpf(cliente.getCpf())) {
 			return null;
 		}	
 		else {
-			return repositorioCliente.save(Cliente);
+			return repositorioCliente.save(cliente);
 		}
 	}
 	
@@ -28,9 +28,14 @@ public class CadastroCliente {
 		return repositorioCliente.findAll();
 	}
 	
-	public Cliente update(Cliente antigo, Cliente novo) {
-		novo.setId(antigo.getId());
-		return repositorioCliente.save(novo);
+	public Cliente update(long antigoId, Cliente novo) {
+		if(repositorioCliente.existsByCpf(novo.getCpf())) {
+			return null;
+		}	
+		else {
+			novo.setId(antigoId);
+			return repositorioCliente.save(novo);
+		}
 	}
 	
 	public Optional<Cliente> findById(Long id) {
@@ -49,8 +54,8 @@ public class CadastroCliente {
 		repositorioCliente.deleteById(id);
 	}
 	
-	public void delete(Cliente Cliente) {
-		repositorioCliente.delete(Cliente);
+	public void delete(Cliente cliente) {
+		repositorioCliente.delete(cliente);
 	}
 	
 }

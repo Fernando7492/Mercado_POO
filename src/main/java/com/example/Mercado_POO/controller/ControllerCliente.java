@@ -35,8 +35,6 @@ public class ControllerCliente {
 	
 	@Autowired
 	private Mercado mercado;
-	@Autowired
-	private ControllerEndereco controllerEndereco;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public ResponseEntity<Object> cadastrarCliente(@RequestBody Cliente cliente) throws JSONException, ParseException{
@@ -52,8 +50,8 @@ public class ControllerCliente {
 	}
 	
 	@PutMapping("atualizarCliente")
-    public Cliente atualizarCliente(@RequestBody Cliente antigoCliente, Cliente novoCliente) {
-        return mercado.updateCliente(antigoCliente, novoCliente);
+    public Cliente atualizarCliente(@RequestBody long antigoClienteId, Cliente novoCliente) {
+        return mercado.updateCliente(antigoClienteId, novoCliente);
     }
 	
 	@GetMapping("cliente")
@@ -61,7 +59,7 @@ public class ControllerCliente {
 		return mercado.listAllCliente();
 	}
 	
-	@GetMapping("/{idCliente}")
+	@GetMapping("/cliente{idCliente}")
 	public Optional<Cliente> findByIdCliente(@PathVariable long idCliente){
 		return mercado.findByIdCliente(idCliente);
 	}
@@ -76,7 +74,7 @@ public class ControllerCliente {
 		return mercado.findByCpfCliente(cpf);
 	}
 	
-	@DeleteMapping("/{idCliente}")
+	@DeleteMapping("/deleteCliente{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteByIdCliente(@PathVariable long idCliente) {
 		mercado.deleteByIdCliente(idCliente);

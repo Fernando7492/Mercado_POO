@@ -1,5 +1,7 @@
 package com.example.Mercado_POO.basica;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,4 +14,9 @@ public class Cliente extends Pessoa{
 		super();
 	}
 
+	public Cliente(String nome, String cpf, String sexo, Date dataNascimento, String email,
+			Endereco enderecoPessoa) {
+		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+
+	}
 }

@@ -37,18 +37,18 @@ public class ControllerCompra {
 		return mercado.listAllCompra();
 	}
 	
-	@GetMapping("/{idCompra}")
+	@GetMapping("/compra{idCompra}")
 	public Optional<Compra> findByIdCompra(@PathVariable long idCompra){
 		return mercado.findByIdCompra(idCompra
 				);
 	}
 	
-	@GetMapping("/{idFornecedorCompra}")
+	@GetMapping("/fornecedor/compra{idFornecedorCompra}")
 	public Optional<Compra> findByFornecedorId(@PathVariable long idFornecedorCompra){
 		return mercado.findByFornecedorCompraId(idFornecedorCompra);
 	}
 	
-	@DeleteMapping("/{idCompra}")
+	@DeleteMapping("/compra{idCompra}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteByIdCompra(@PathVariable long idCompra) {
 		mercado.deleteByIdCompra(idCompra);

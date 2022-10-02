@@ -15,8 +15,8 @@ public class CadastroVenda {
 	@Autowired
 	private RepositorioVenda repositorioVenda;
 	
-	public Venda saveVenda(Venda Venda) {
-		return repositorioVenda.save(Venda);
+	public Venda saveVenda(Venda venda) {
+		return repositorioVenda.save(venda);
 	}	
 	
 	public List<Venda> listAll(){
@@ -39,7 +39,7 @@ public class CadastroVenda {
 		repositorioVenda.deleteById(id);
 	}
 	
-	public void delete(Venda Venda) {
-		repositorioVenda.delete(Venda);
+	public void delete(Venda venda) {
+		repositorioVenda.delete(venda);
 	}
 }
