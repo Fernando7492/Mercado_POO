@@ -2,6 +2,8 @@ package com.example.Mercado_POO.basica;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,28 +16,53 @@ import javax.persistence.ManyToOne;
 public class ProdutoVenda {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Integer qtdProdutos;
-	private BigDecimal valorTotal;
-	private Date validade;
-
+	private Double valorTotal;
+	private String validade;
+	//Date String = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 	
-	public ProdutoVenda(Integer qtdProdutos, Date validade, Produto produto) {
+	public ProdutoVenda(Integer qtdProdutos, String validade, Produto produto) {
 		super();
 		this.qtdProdutos = qtdProdutos;
 		this.produto = produto;
 		this.validade = this.produto.getValidade();
 	}
 	
+	public ProdutoVenda(Integer qtdProdutos, Double valorTotal, String validade, Produto produto) {
+		super();
+		this.qtdProdutos = qtdProdutos;
+		this.valorTotal = valorTotal;
+		this.validade = validade;
+		this.produto = produto;
+	}
+
+	
+	public ProdutoVenda(Long id, Integer qtdProdutos, Double valorTotal, String validade, String String, Produto produto) {
+		super();
+		this.id = id;
+		this.qtdProdutos = qtdProdutos;
+		this.valorTotal = valorTotal;
+		this.validade = validade;
+		this.produto = produto;
+	}
+
 	public void calcularValorTotal() {
-		valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));
+		valorTotal= produto.getValorVenda() * qtdProdutos;
+		//valorTotal = produto.getValorVenda().multiply(new BigDecimal(qtdProdutos));
 	}
 	
+	
+	
+	public ProdutoVenda() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -60,11 +87,11 @@ public class ProdutoVenda {
 		this.produto = produto;
 	}
 
-	public BigDecimal getValorTotal() {
+	public Double getValorTotal() {
 		return valorTotal;
 	}
 
-	public Date getValidade() {
+	public String getValidade() {
 		return validade;
 	}
 

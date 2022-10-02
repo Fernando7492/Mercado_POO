@@ -18,11 +18,11 @@ public class MercadoPooApplication {
 		
 		Mercado mercado = conf.getBean(Mercado.class);
 		
-		Endereco end = new Endereco("rua a", "pe", "brejao", "centro", "79", "55325-000");
+		//Endereco end = new Endereco("rua a", "pe", "brejao", "centro", "79", "55325-000");
 		
-		Vendedor vend = new Vendedor("pedro","12345","m",new Date(0), "email@mail.com",end);
+		//Vendedor vend = new Vendedor("pedro","12345","m",new Date(0), "email@mail.com",end);
 		
-		mercado.saveVendedor(vend);
+		//mercado.saveVendedor(vend);
 		
 		
 	}

@@ -28,6 +28,21 @@ public class Endereco {
 		this.cep = cep;
 	}
 	
+	
+	
+	public Endereco(long id, String logradouro, String uf, String cidade, String bairro, String numero, String cep) {
+		super();
+		this.id = id;
+		this.logradouro = logradouro;
+		this.uf = uf;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.numero = numero;
+		this.cep = cep;
+	}
+
+
+
 	private Endereco() {
 		super();
 	}

@@ -1,7 +1,6 @@
 package com.example.Mercado_POO.basica;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -13,17 +12,17 @@ import javax.persistence.Id;
 @Entity
 public class Produto{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
 	private String categoria;
-	private BigDecimal valorCompra;
-	private BigDecimal valorVenda;
+	private Double valorCompra;
+	private Double valorVenda;
 	private Integer quantidade;
-	private Date validade;
+	private String validade;
 	
-	public Produto(String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda, int quantidade,
-			Date validade) {
+	public Produto(String nome, String categoria, Double valorCompra, Double valorVenda, int quantidade,
+			String validade) {
 		super();
 		this.nome = nome;
 		this.categoria = categoria;
@@ -35,8 +34,8 @@ public class Produto{
 	
 	
 	
-	public Produto(long id, String nome, String categoria, BigDecimal valorCompra, BigDecimal valorVenda,
-			Integer quantidade, Date validade) {
+	public Produto(long id, String nome, String categoria, Double valorCompra, Double valorVenda,
+			Integer quantidade, String validade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -67,16 +66,16 @@ public class Produto{
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public BigDecimal getValorCompra() {
+	public Double getValorCompra() {
 		return valorCompra;
 	}
-	public void setValorCompra(BigDecimal valorCompra) {
+	public void setValorCompra(Double valorCompra) {
 		this.valorCompra = valorCompra;
 	}
-	public BigDecimal getValorVenda() {
+	public Double getValorVenda() {
 		return valorVenda;
 	}
-	public void setValorVenda(BigDecimal valorVenda) {
+	public void setValorVenda(Double valorVenda) {
 		this.valorVenda = valorVenda;
 	}
 	public int getQuantidade() {
@@ -85,10 +84,10 @@ public class Produto{
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public Date getValidade() {
+	public String getValidade() {
 		return validade;
 	}
-	public void setValidade(Date validade) {
+	public void setValidade(String validade) {
 		this.validade = validade;
 	}
 	public void setId(long id) {

@@ -1,6 +1,7 @@
 package com.example.Mercado_POO.fachada;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import com.example.Mercado_POO.basica.Endereco;
 import com.example.Mercado_POO.basica.Fornecedor;
 import com.example.Mercado_POO.basica.MovimentacaoEstoque;
 import com.example.Mercado_POO.basica.Produto;
+import com.example.Mercado_POO.basica.ProdutoVenda;
 import com.example.Mercado_POO.basica.Venda;
 import com.example.Mercado_POO.basica.Vendedor;
 import com.example.Mercado_POO.cadastro.CadastoMovimentacaoEstoque;
@@ -107,8 +109,23 @@ public class Mercado {
 	
 	//Venda
 	
-	public Venda saveVenda(Venda Venda) {
-		return cadastroVenda.saveVenda(Venda);
+	public Venda saveVenda(Venda venda) {
+		ArrayList<ProdutoVenda> listProdutoVenda = new ArrayList<ProdutoVenda>(venda.getProdutosVenda());
+        ArrayList<Produto> listProduto = new ArrayList<Produto>(listAllProduto());
+
+
+        for(ProdutoVenda produtoVenda : listProdutoVenda) {
+            for(Produto produto : listProduto) {
+                if(produtoVenda.getProduto().getId()==produto.getId()) {
+                    if(produtoVenda.getQtdProdutos() <= produto.getQuantidade()) {
+                        produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
+                    }else {
+                        return null;
+                    }
+                }
+            }
+        }
+		return cadastroVenda.saveVenda(venda);
 	}	
 	
 	public List<Venda> listAllVenda(){

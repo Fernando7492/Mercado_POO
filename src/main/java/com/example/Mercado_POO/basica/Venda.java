@@ -1,9 +1,8 @@
 package com.example.Mercado_POO.basica;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +14,12 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Venda {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private LocalDateTime horaVenda;
-	private BigDecimal valorTotal;
+	private String horaVenda;
+	private Double valorTotal;
 	private String formaPagamento;
 	
 	@ManyToOne
@@ -31,20 +30,34 @@ public class Venda {
 	@JoinColumn(name="vendedor_id")
 	private Vendedor vendedorVenda;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="venda_id")
 	private List<ProdutoVenda> produtosVenda;
 	
-	private Venda() {
+	public Venda() {
 		super();
 	}
 
 	
 
-	public Venda(long id, LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
+	public Venda(long id, String horaVenda, Double valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
 		this.id = id;
+		this.horaVenda = horaVenda;
+		this.valorTotal = valorTotal;
+		this.formaPagamento = formaPagamento;
+		this.clienteVenda = clienteVenda;
+		this.vendedorVenda = vendedorVenda;
+		this.produtosVenda = produtosVenda;
+	}
+
+	
+
+
+	public Venda(String horaVenda, Double valorTotal, String formaPagamento, Cliente clienteVenda,
+			Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
+		super();
 		this.horaVenda = horaVenda;
 		this.valorTotal = valorTotal;
 		this.formaPagamento = formaPagamento;
@@ -75,15 +88,15 @@ public class Venda {
 		this.id = id;
 	}
 
-	public LocalDateTime getHoraVenda() {
+	public String getHoraVenda() {
 		return horaVenda;
 	}
 
-	public void setHoraVenda(LocalDateTime horaVenda) {
+	public void setHoraVenda(String horaVenda) {
 		this.horaVenda = horaVenda;
 	}
 
-	public BigDecimal getValorTotal() {
+	public Double getValorTotal() {
 		return valorTotal;
 	}
 
@@ -123,7 +136,7 @@ public class Venda {
 	
 	public void calcularValor() {
 		for(ProdutoVenda produto: produtosVenda) {
-			valorTotal = produto.getValorTotal().add(valorTotal);
+			valorTotal = produto.getValorTotal();
 		}
 	}
 

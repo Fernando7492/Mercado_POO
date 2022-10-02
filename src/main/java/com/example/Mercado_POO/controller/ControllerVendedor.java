@@ -37,33 +37,10 @@ public class ControllerVendedor {
 
 	@Autowired
 	private Mercado mercado;
-	@Autowired
-	private ControllerEndereco controllerEndereco;
 	
 	//@PostMapping("cadastrar")
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public ResponseEntity<Object> cadastrarVendedor(@RequestBody Vendedor vendedor) throws JSONException, ParseException{
-		/*Date data = new Date();
-		JSONObject obj = new JSONObject(dados);
-		String nome = obj.getString("nome");
-		String cpf = obj.getString("cpf");
-		String sexo = obj.getString("sexo");
-		Date dataNascimento = parseDate(obj.getString("dataNascimento"));
-		String email = obj.getString("email");
-		String cargo = obj.getString("cargo");
-		double salario = obj.getDouble("salario");
-		Date dataContrato = parseDate(obj.getString("dataContrato"));
-		Endereco endereco =  controllerEndereco.cadastrarEndereco(dados);
-		Vendedor vendedor = new Vendedor();
-		vendedor.setNome(nome);
-		vendedor.setCpf(cpf);
-		vendedor.setSexo(sexo);
-		vendedor.setDataNascimento(dataNascimento);
-		vendedor.setEmail(email);
-		vendedor.setCargo(cargo);
-		vendedor.setSalario(salario);
-		vendedor.setDataContrato(dataContrato);
-		vendedor.setEnderecoPessoa(endereco);*/
 		if(mercado.saveVendedor(vendedor) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");
@@ -80,7 +57,7 @@ public class ControllerVendedor {
         return mercado.updateVendedor(antigoVendedor, novoVendedor);
     }
 	
-	@GetMapping("vendedor")
+	@GetMapping("/listarVendedores")
 	public List<Vendedor> listarVendedores(){
 		return mercado.listAllVendedor();
 	}

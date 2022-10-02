@@ -56,7 +56,7 @@ public class ControllerCliente {
         return mercado.updateCliente(antigoCliente, novoCliente);
     }
 	
-	@GetMapping("cliente")
+	@GetMapping("/listarClientes")
 	public List<Cliente> listarClientees(){
 		return mercado.listAllCliente();
 	}

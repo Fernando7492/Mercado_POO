@@ -1,13 +1,10 @@
 package com.example.Mercado_POO.basica;
 
-import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Vendedor extends Pessoa{
@@ -17,29 +14,37 @@ public class Vendedor extends Pessoa{
 	private Long id;
 	private String cargo;
 	private double salario;
-	private Date dataContrato;
+	private String dataContrato;
 
-	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
-			Endereco enderecoPessoa, long id2, String cargo, double salario, Date dataContrato) {
+	
+	public Vendedor(String nome, String cpf, String sexo, String dataNascimento, String email, Endereco enderecoPessoa,
+			Long id, String cargo, double salario, String dataContrato) {
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
-		id = id2;
+		this.id = id;
 		this.cargo = cargo;
 		this.salario = salario;
 		this.dataContrato = dataContrato;
 	}
 
 	
+	public Vendedor(String nome, String cpf, String sexo, String dataNascimento, String email, Endereco enderecoPessoa,
+			String cargo, double salario, String dataContrato) {
+		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+		this.cargo = cargo;
+		this.salario = salario;
+		this.dataContrato = dataContrato;
+	}
+
 	
+
+	
+
 	public Vendedor() {
 		super();
 	}
 
 
 
-	public Vendedor(String nome, String cpf, String sexo, Date dataNascimento, String email,
-			Endereco enderecoPessoa) {
-		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
-	}
 
 	public Long getId() {
 		return id;
@@ -65,11 +70,11 @@ public class Vendedor extends Pessoa{
 		this.salario = salario;
 	}
 
-	public Date getDataContrato() {
+	public String getDataContrato() {
 		return dataContrato;
 	}
 
-	public void setDataContrato(Date dataContrato) {
+	public void setDataContrato(String dataContrato) {
 		this.dataContrato = dataContrato;
 	}
 
