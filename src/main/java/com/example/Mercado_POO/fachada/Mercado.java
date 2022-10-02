@@ -140,7 +140,7 @@ public class Mercado {
 			movimentacao.setQuantidade(-produto.getQtdProdutos());
 			movimentacao.setMotivo("Venda");
 			movimentacao.setDataHora(LocalDateTime.now());
-			saveMovimentacaoEstoque(movimentacao);
+			//saveMovimentacaoEstoque(movimentacao);
 			}
 			return cadastroVenda.saveVenda(venda);
 		}else {

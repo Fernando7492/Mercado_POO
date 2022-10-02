@@ -40,9 +40,10 @@ public class Venda {
 		super();
 	}
 
-	public Venda(LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
+	public Venda(long id, LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
+		this.id = id;
 		this.horaVenda = horaVenda;
 		this.valorTotal = valorTotal;
 		this.formaPagamento = formaPagamento;

@@ -48,7 +48,7 @@ public class MercadoPooApplication {
 		prods.add(prodvend3);
 		
 
-		Venda venda = new Venda(LocalDateTime.now(),  new BigDecimal(15.0),"pix", cli, vend, prods);
+		Venda venda = new Venda(1, LocalDateTime.now(),  new BigDecimal(15.0),"pix", cli, vend, prods);
 		
 		mercado.saveProduto(prod);
 		mercado.saveProduto(prod2);
