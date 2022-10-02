@@ -1,6 +1,5 @@
 package com.example.Mercado_POO.fachada;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,17 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Compra;
-import com.example.Mercado_POO.basica.Endereco;
 import com.example.Mercado_POO.basica.Fornecedor;
 import com.example.Mercado_POO.basica.MovimentacaoEstoque;
 import com.example.Mercado_POO.basica.Produto;
+import com.example.Mercado_POO.basica.ProdutoCompra;
 import com.example.Mercado_POO.basica.ProdutoVenda;
 import com.example.Mercado_POO.basica.Venda;
 import com.example.Mercado_POO.basica.Vendedor;
 import com.example.Mercado_POO.cadastro.CadastoMovimentacaoEstoque;
 import com.example.Mercado_POO.cadastro.CadastroCliente;
 import com.example.Mercado_POO.cadastro.CadastroCompra;
-import com.example.Mercado_POO.cadastro.CadastroEndereco;
 import com.example.Mercado_POO.cadastro.CadastroFornecedor;
 import com.example.Mercado_POO.cadastro.CadastroProduto;
 import com.example.Mercado_POO.cadastro.CadastroVenda;
@@ -44,8 +42,6 @@ public class Mercado {
 	private CadastroCliente cadastroCliente;
 	@Autowired
 	private CadastroVendedor cadastroVendedor;
-	@Autowired
-	private CadastroEndereco cadastroEndereco;
 	
 	//Fornecedor
 	
@@ -57,8 +53,8 @@ public class Mercado {
 		return cadastroFornecedor.listAll();
 	}
 	
-	public Fornecedor updateFornecedor(Fornecedor antigo, Fornecedor novo) {
-		return cadastroFornecedor.update(antigo, novo);
+	public Fornecedor updateFornecedor(long antigoId, Fornecedor novo) {
+		return cadastroFornecedor.update(antigoId, novo);
 	}
 	
 	public Optional<Fornecedor> findByIdFornecedor(Long id) {
@@ -77,13 +73,22 @@ public class Mercado {
 		cadastroFornecedor.deleteById(id);
 	}
 	
-	public void deleteFornecedor(Fornecedor Fornecedor) {
-		cadastroFornecedor.delete(Fornecedor);
+	public void deleteFornecedor(Fornecedor fornecedor) {
+		cadastroFornecedor.delete(fornecedor);
 	}
 
 	//Compra
 	
 	public Compra saveCompra(Compra compra) {
+		for(ProdutoCompra produto : compra.getProdutosCompra()) {
+			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())+produto.getQtdProdutos());
+			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
+			movimentacao.setProduto(produto.getProduto());
+			movimentacao.setQuantidade(+produto.getQtdProdutos());
+			movimentacao.setMotivo("Compra");
+			movimentacao.setDataHora("1/8/2022");
+			saveMovimentacaoEstoque(movimentacao);
+		}
 		return cadastroCompra.saveCompra(compra);
 	}	
 	
@@ -110,22 +115,36 @@ public class Mercado {
 	//Venda
 	
 	public Venda saveVenda(Venda venda) {
+		boolean done = true;
 		ArrayList<ProdutoVenda> listProdutoVenda = new ArrayList<ProdutoVenda>(venda.getProdutosVenda());
-        ArrayList<Produto> listProduto = new ArrayList<Produto>(listAllProduto());
-
-
-        for(ProdutoVenda produtoVenda : listProdutoVenda) {
-            for(Produto produto : listProduto) {
-                if(produtoVenda.getProduto().getId()==produto.getId()) {
-                    if(produtoVenda.getQtdProdutos() <= produto.getQuantidade()) {
-                        produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
-                    }else {
-                        return null;
-                    }
-                }
-            }
-        }
-		return cadastroVenda.saveVenda(venda);
+		ArrayList<Produto> listProduto = new ArrayList<Produto>(listAllProduto());
+			
+		for(ProdutoVenda produtoVenda : listProdutoVenda) {
+			for(Produto produto : listProduto) {
+				if(produtoVenda.getProduto().getId()==produto.getId()) {
+					if(produtoVenda.getQtdProdutos() <= produto.getQuantidade()) {
+						produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
+					}else {
+						done = false;
+					}
+				}
+			}
+		}
+		
+		if(done) {
+			for(ProdutoVenda produto : venda.getProdutosVenda()) {
+			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())-produto.getQtdProdutos());
+			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
+			movimentacao.setProduto(produto.getProduto());
+			movimentacao.setQuantidade(-produto.getQtdProdutos());
+			movimentacao.setMotivo("Venda");
+			movimentacao.setDataHora(venda.getHoraVenda());
+			saveMovimentacaoEstoque(movimentacao);
+			}
+			return cadastroVenda.saveVenda(venda);
+		}else {
+			return null;
+		}
 	}	
 	
 	public List<Venda> listAllVenda(){
@@ -168,9 +187,8 @@ public class Mercado {
 		return cadastroProduto.listAll();
 	}
 	
-	public Produto updateProduto(Produto antigo,Produto novo) {
-		novo.setId(antigo.getId());
-		return cadastroProduto.save(novo);
+	public Produto updateProduto(long antigoId,Produto novo) {
+			return cadastroProduto.update(antigoId,novo);
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
@@ -201,7 +219,7 @@ public class Mercado {
 	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
 		return cadastroMovimentacaoEstoque.findById(id);
 	}
-	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(LocalDateTime dataMovimentacaoEstoqueIni, LocalDateTime dataMovimentacaoEstoqueFim){
+	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(String dataMovimentacaoEstoqueIni, String dataMovimentacaoEstoqueFim){
 		return cadastroMovimentacaoEstoque.findByDataHora(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
 
 	}
@@ -217,8 +235,8 @@ public class Mercado {
 		return cadastroCliente.listAll();
 	}
 	
-	public Cliente updateCliente(Cliente antigo, Cliente novo) {
-		return cadastroCliente.update(antigo, novo);
+	public Cliente updateCliente(long antigoId, Cliente novo) {
+		return cadastroCliente.update(antigoId, novo);
 	}
 	
 	public Optional<Cliente> findByIdCliente(Long id) {
@@ -251,8 +269,8 @@ public class Mercado {
 		return cadastroVendedor.listAll();
 	}
 	
-	public Vendedor updateVendedor(Vendedor antigo, Vendedor novo) {
-		return cadastroVendedor.update(antigo, novo);
+	public Vendedor updateVendedor(long antigoId, Vendedor novo) {
+		return cadastroVendedor.update(antigoId, novo);
 	}
 	
 	public Optional<Vendedor> findByIdVendedor(Long id) {
@@ -275,9 +293,4 @@ public class Mercado {
 		cadastroVendedor.delete(vendedor);
 	}
 	
-	//endereco
-	
-	public Endereco saveEndereco(Endereco endereco) {
-		return cadastroEndereco.saveEndereco(endereco);
-	}
 }

@@ -22,15 +22,15 @@ public class Venda {
 	private Double valorTotal;
 	private String formaPagamento;
 	
-	@ManyToOne
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="cliente_id")
 	private Cliente clienteVenda;
 	
-	@ManyToOne
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="vendedor_id")
 	private Vendedor vendedorVenda;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="venda_id")
 	private List<ProdutoVenda> produtosVenda;
 	
@@ -52,9 +52,6 @@ public class Venda {
 		this.produtosVenda = produtosVenda;
 	}
 
-	
-
-
 	public Venda(String horaVenda, Double valorTotal, String formaPagamento, Cliente clienteVenda,
 			Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
@@ -66,19 +63,13 @@ public class Venda {
 		this.produtosVenda = produtosVenda;
 	}
 
-
-
 	public String getFormaPagamento() {
 		return formaPagamento;
 	}
 
-
-
 	public void setFormaPagamento(String formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
-
-
 
 	public long getId() {
 		return id;

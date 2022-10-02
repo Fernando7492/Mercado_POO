@@ -11,6 +11,6 @@ import com.example.Mercado_POO.basica.MovimentacaoEstoque;
 @Repository
 public interface RepositorioMovimentacaoEstoque extends JpaRepository<MovimentacaoEstoque, Long> {
 	
-	Optional<MovimentacaoEstoque> findByDataHoraBetween(LocalDateTime dataMovimentacaoEstoqueIni, LocalDateTime dataMovimentacaoEstoqueFim);
+	Optional<MovimentacaoEstoque> findByDataHoraBetween(String dataMovimentacaoEstoqueIni, String dataMovimentacaoEstoqueFim);
 	
 }

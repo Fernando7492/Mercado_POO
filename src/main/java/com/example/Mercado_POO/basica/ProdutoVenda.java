@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class ProdutoVenda {
 	
@@ -23,7 +22,7 @@ public class ProdutoVenda {
 	private String validade;
 	//Date String = new Date();
 	
-	@ManyToOne
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 	
@@ -34,23 +33,7 @@ public class ProdutoVenda {
 		this.validade = this.produto.getValidade();
 	}
 	
-	public ProdutoVenda(Integer qtdProdutos, Double valorTotal, String validade, Produto produto) {
-		super();
-		this.qtdProdutos = qtdProdutos;
-		this.valorTotal = valorTotal;
-		this.validade = validade;
-		this.produto = produto;
-	}
-
 	
-	public ProdutoVenda(Long id, Integer qtdProdutos, Double valorTotal, String validade, String String, Produto produto) {
-		super();
-		this.id = id;
-		this.qtdProdutos = qtdProdutos;
-		this.valorTotal = valorTotal;
-		this.validade = validade;
-		this.produto = produto;
-	}
 
 	public void calcularValorTotal() {
 		valorTotal= produto.getValorVenda() * qtdProdutos;

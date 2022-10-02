@@ -22,7 +22,7 @@ public class CadastoMovimentacaoEstoque {
 	public Optional<MovimentacaoEstoque> findById(Long id){
 		return repositorioMovimentacaoEstoque.findById(id);
 	}
-	public Optional<MovimentacaoEstoque> findByDataHora(LocalDateTime dataMovimentacaoEstoqueIni, LocalDateTime dataMovimentacaoEstoqueFim){
+	public Optional<MovimentacaoEstoque> findByDataHora(String dataMovimentacaoEstoqueIni, String dataMovimentacaoEstoqueFim){
 		return repositorioMovimentacaoEstoque.findByDataHoraBetween(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
 		
 	}	

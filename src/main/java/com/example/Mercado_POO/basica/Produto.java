@@ -82,7 +82,11 @@ public class Produto{
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+		if(quantidade<0) {
+			this.quantidade=0;
+		}else {
+			this.quantidade=quantidade;
+		}
 	}
 	public String getValidade() {
 		return validade;
@@ -110,9 +114,7 @@ public class Produto{
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return Objects.equals(categoria, other.categoria) && id == other.id && Objects.equals(nome, other.nome)
-				&& quantidade == other.quantidade && Objects.equals(validade, other.validade)
-				&& Objects.equals(valorCompra, other.valorCompra) && Objects.equals(valorVenda, other.valorVenda);
+		return Objects.equals(nome, other.nome);
 	}
 	@Override
 	public String toString() {

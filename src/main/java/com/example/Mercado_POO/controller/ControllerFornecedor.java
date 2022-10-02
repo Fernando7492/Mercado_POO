@@ -36,8 +36,6 @@ public class ControllerFornecedor {
 	
 	@Autowired
 	private Mercado mercado;
-	@Autowired
-	private ControllerEndereco controllerEndereco;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public ResponseEntity<Object> cadastrarFornecedor(@RequestBody Fornecedor fornecedor) throws JSONException, ParseException{
@@ -53,8 +51,8 @@ public class ControllerFornecedor {
 	}
 	
 	@PutMapping("atualizarFornecedor")
-    public Fornecedor atualizarFornecedor(@RequestBody Fornecedor antigoFornecedor, Fornecedor novoFornecedor) {
-        return mercado.updateFornecedor(antigoFornecedor, novoFornecedor);
+    public Fornecedor atualizarFornecedor(@RequestBody long antigoFornecedorId, Fornecedor novoFornecedor) {
+        return mercado.updateFornecedor(antigoFornecedorId, novoFornecedor);
     }
 	
 	@GetMapping("fornecedor")
@@ -62,7 +60,7 @@ public class ControllerFornecedor {
 		return mercado.listAllFornecedor();
 	}
 	
-	@GetMapping("/{idFornecedor}")
+	@GetMapping("/fornecedor{idFornecedor}")
 	public Optional<Fornecedor> findByIdFornecedor(@PathVariable long idFornecedor){
 		return mercado.findByIdFornecedor(idFornecedor);
 	}
@@ -77,7 +75,7 @@ public class ControllerFornecedor {
 		return mercado.findByCnpjFornecedor(cnpj);
 	}
 	
-	@DeleteMapping("/{idFornecedor}")
+	@DeleteMapping("/fornecedor{idFornecedor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteByIdFornecedor(@PathVariable long idFornecedor) {
 		mercado.deleteByIdFornecedor(idFornecedor);

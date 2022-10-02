@@ -1,6 +1,5 @@
 package com.example.Mercado_POO.basica;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,5 +16,4 @@ public class Cliente extends Pessoa{
 		super();
 	}
 	
-
 }

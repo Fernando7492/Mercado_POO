@@ -33,18 +33,11 @@ public class Vendedor extends Pessoa{
 		this.cargo = cargo;
 		this.salario = salario;
 		this.dataContrato = dataContrato;
-	}
-
-	
-
-	
+	}	
 
 	public Vendedor() {
 		super();
 	}
-
-
-
 
 	public Long getId() {
 		return id;

@@ -22,7 +22,7 @@ public class Pessoa {
 	private String dataNascimento;
 	private String email;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne//(cascade=CascadeType.ALL)
 	private Endereco enderecoPessoa;
 
 	public Pessoa(String nome, String cpf, String sexo, String dataNascimento, String email,

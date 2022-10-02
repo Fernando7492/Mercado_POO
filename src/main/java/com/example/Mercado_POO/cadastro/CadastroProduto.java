@@ -23,7 +23,6 @@ public class CadastroProduto {
 		else {
 			return repositorioProduto.save(produto);
 		}
-		
 	}
 	
 	public Optional<Produto> findById(long id) {
@@ -34,9 +33,14 @@ public class CadastroProduto {
 		return repositorioProduto.findAll();
 	}
 	
-	public Produto update(Produto antigo,Produto novo) {
-		novo.setId(antigo.getId());
-		return repositorioProduto.save(novo);
+	public Produto update(long antigoId,Produto novo) {
+		if(repositorioProduto.existsByNome(novo.getNome())) {
+			return null;
+		}
+		else {
+			novo.setId(antigoId);
+			return repositorioProduto.save(novo);
+		}
 	}
 	
 	public Optional<Produto> findByNome(String nome){
