@@ -36,8 +36,6 @@ public class ControllerFornecedor {
 	
 	@Autowired
 	private Mercado mercado;
-	@Autowired
-	private ControllerEndereco controllerEndereco;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public ResponseEntity<Object> cadastrarFornecedor(@RequestBody Fornecedor fornecedor) throws JSONException, ParseException{
@@ -53,8 +51,8 @@ public class ControllerFornecedor {
 	}
 	
 	@PutMapping("atualizarFornecedor")
-    public Fornecedor atualizarFornecedor(@RequestBody Fornecedor antigoFornecedor, Fornecedor novoFornecedor) {
-        return mercado.updateFornecedor(antigoFornecedor, novoFornecedor);
+    public Fornecedor atualizarFornecedor(@RequestBody long antigoFornecedorId, Fornecedor novoFornecedor) {
+        return mercado.updateFornecedor(antigoFornecedorId, novoFornecedor);
     }
 	
 	@GetMapping("fornecedor")

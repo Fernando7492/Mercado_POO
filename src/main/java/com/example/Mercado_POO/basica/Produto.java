@@ -86,7 +86,7 @@ public class Produto{
 		if(quantidade<0) {
 			this.quantidade=0;
 		}else {
-			this.quantidade= quantidade;
+			this.quantidade=quantidade;
 		}
 	}
 	public Date getValidade() {

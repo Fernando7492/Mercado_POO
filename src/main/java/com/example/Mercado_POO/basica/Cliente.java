@@ -14,4 +14,9 @@ public class Cliente extends Pessoa{
 		super();
 	}
 
+	public Cliente(String nome, String cpf, String sexo, Date dataNascimento, String email,
+			Endereco enderecoPessoa) {
+		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
+
+	}
 }

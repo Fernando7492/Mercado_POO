@@ -37,8 +37,6 @@ public class ControllerVendedor {
 
 	@Autowired
 	private Mercado mercado;
-	@Autowired
-	private ControllerEndereco controllerEndereco;
 	
 	//@PostMapping("cadastrar")
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
@@ -76,8 +74,8 @@ public class ControllerVendedor {
 	}
 	
 	@PutMapping("atualizarVendedor")
-    public Vendedor atualizarVendedor(@RequestBody Vendedor antigoVendedor, Vendedor novoVendedor) {
-        return mercado.updateVendedor(antigoVendedor, novoVendedor);
+    public Vendedor atualizarVendedor(@RequestBody long antigoVendedorId, Vendedor novoVendedor) {
+        return mercado.updateVendedor(antigoVendedorId, novoVendedor);
     }
 	
 	@GetMapping("vendedor")

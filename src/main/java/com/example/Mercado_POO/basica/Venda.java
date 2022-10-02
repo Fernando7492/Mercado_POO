@@ -40,12 +40,9 @@ public class Venda {
 		super();
 	}
 
-	
-
-	public Venda(long id, LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
+	public Venda(LocalDateTime horaVenda, BigDecimal valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
 		super();
-		this.id = id;
 		this.horaVenda = horaVenda;
 		this.valorTotal = valorTotal;
 		this.formaPagamento = formaPagamento;
@@ -54,19 +51,13 @@ public class Venda {
 		this.produtosVenda = produtosVenda;
 	}
 
-
-
 	public String getFormaPagamento() {
 		return formaPagamento;
 	}
 
-
-
 	public void setFormaPagamento(String formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
-
-
 
 	public long getId() {
 		return id;

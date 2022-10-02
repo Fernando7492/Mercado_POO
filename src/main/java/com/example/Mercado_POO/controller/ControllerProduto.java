@@ -66,8 +66,8 @@ public class ControllerProduto {
 		return mercado.findByNomeProduto(nome);
 	}
 	@PutMapping("produtos")
-    public Produto atualizarProduto(@RequestBody Produto antigoProduto, Produto novoProduto) {
-        return mercado.updateProduto(antigoProduto, novoProduto);
+    public Produto atualizarProduto(@RequestBody long antigoProdutoId, Produto novoProduto) {
+        return mercado.updateProduto(antigoProdutoId, novoProduto);
     }
 	@GetMapping("/{categoria}")
 	public Optional<Produto> findByCategoriaProduto(@PathVariable String categoria){

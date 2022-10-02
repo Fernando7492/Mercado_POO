@@ -28,9 +28,14 @@ public class CadastroFornecedor {
 		return repositorioFornecedor.findAll();
 	}
 	
-	public Fornecedor update(Fornecedor antigo, Fornecedor novo) {
-		novo.setId(antigo.getId());
-		return repositorioFornecedor.save(novo);
+	public Fornecedor update(long antigoId, Fornecedor novo) {
+		if(repositorioFornecedor.existsByCnpjFornecedor(novo.getCnpjFornecedor())) {
+			return null;
+		}	
+		else {
+			novo.setId(antigoId);
+			return repositorioFornecedor.save(novo);
+		}
 	}
 	
 	public Optional<Fornecedor> findById(Long id) {
@@ -49,8 +54,8 @@ public class CadastroFornecedor {
 		repositorioFornecedor.deleteById(id);
 	}
 	
-	public void delete(Fornecedor Fornecedor) {
-		repositorioFornecedor.delete(Fornecedor);
+	public void delete(Fornecedor fornecedor) {
+		repositorioFornecedor.delete(fornecedor);
 	}
 
 }
