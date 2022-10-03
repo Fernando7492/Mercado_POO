@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Mercado_POO.basica.MovimentacaoEstoque;
+import com.example.Mercado_POO.excecoes.MovimentacaoInexistenteException;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @CrossOrigin(origins="http://localhost:8080/")
@@ -30,8 +31,7 @@ public class ControllerMovimentacaoEstoque {
 		return mercado.saveMovimentacaoEstoque(movimentacaoEstoque);
 	}
 	@GetMapping("/estoque{id}")
-	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
+	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id)throws MovimentacaoInexistenteException{
 		return mercado.findMovimentacaoEstoqueById(id);
 	}
-
 }
