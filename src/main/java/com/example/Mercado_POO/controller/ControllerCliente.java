@@ -49,9 +49,17 @@ public class ControllerCliente {
 		}
 	}
 	
-	@PutMapping("atualizarCliente")
-    public Cliente atualizarCliente(@RequestBody long antigoClienteId, Cliente novoCliente) {
-        return mercado.updateCliente(antigoClienteId, novoCliente);
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public ResponseEntity<Object> atualizarCliente(@RequestBody Cliente novoCliente) {
+        if(mercado.updateCliente( novoCliente) != null) {
+			 Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("ok", "successfully");
+			return new ResponseEntity<Object>(resp,HttpStatus.OK);
+		}else {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error", "Error");
+			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
+		}
     }
 	
 	@GetMapping("/listarClientes")

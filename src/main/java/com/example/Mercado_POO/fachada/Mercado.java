@@ -235,8 +235,8 @@ public class Mercado {
 		return cadastroCliente.listAll();
 	}
 	
-	public Cliente updateCliente(long antigoId, Cliente novo) {
-		return cadastroCliente.update(antigoId, novo);
+	public Cliente updateCliente(Cliente novo) {
+		return cadastroCliente.update( novo);
 	}
 	
 	public Optional<Cliente> findByIdCliente(Long id) {

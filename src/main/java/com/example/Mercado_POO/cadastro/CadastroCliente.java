@@ -28,14 +28,9 @@ public class CadastroCliente {
 		return repositorioCliente.findAll();
 	}
 	
-	public Cliente update(long antigoId, Cliente novo) {
-		if(repositorioCliente.existsByCpf(novo.getCpf())) {
-			return null;
-		}	
-		else {
-			novo.setId(antigoId);
+	public Cliente update(Cliente novo) {
 			return repositorioCliente.save(novo);
-		}
+
 	}
 	
 	public Optional<Cliente> findById(Long id) {
