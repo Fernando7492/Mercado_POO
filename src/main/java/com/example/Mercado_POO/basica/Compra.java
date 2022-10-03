@@ -1,19 +1,17 @@
 package com.example.Mercado_POO.basica;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
-//estudar annotation inheritance
+
 @Entity
 public class Compra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private LocalDateTime dataHoraCompra;
-	private BigDecimal valorTotalCompra;
+	private Long id;
+	private String horaCompra;
+	private Double valorTotalCompra;
 	
 	@ManyToOne
 	@JoinColumn(name="fornecedor_id")
@@ -27,10 +25,10 @@ public class Compra {
 		super();
 	}
 
-	public Compra(LocalDateTime dataHoraCompra, BigDecimal valorTotalCompra,
+	public Compra(String horaCompra, Double valorTotalCompra,
 			Fornecedor fornecedorCompra, List<ProdutoCompra> produtosCompra) {
 		super();
-		this.dataHoraCompra = dataHoraCompra;
+		this.horaCompra = horaCompra;
 		this.valorTotalCompra = valorTotalCompra;
 		this.fornecedorCompra = fornecedorCompra;
 		this.produtosCompra = produtosCompra;
@@ -44,15 +42,15 @@ public class Compra {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataHoraCompra() {
-		return dataHoraCompra;
+	public String getDataHoraCompra() {
+		return horaCompra;
 	}
 
-	public void setDataHoraCompra(LocalDateTime dataHoraCompra) {
-		this.dataHoraCompra = dataHoraCompra;
+	public void setDataHoraCompra(String horaCompra) {
+		this.horaCompra = horaCompra;
 	}
 
-	public BigDecimal getValorTotalCompra() {
+	public Double getValorTotalCompra() {
 		return valorTotalCompra;
 	}
 
@@ -73,25 +71,15 @@ public class Compra {
 		calcularValor();
 	}
 	
-	public void adicionarProduto(ProdutoCompra produto) {
-		this.produtosCompra.add(produto);
-		calcularValor();
-	}
-	
-	public void removerProdutos(ProdutoCompra produto) {
-		this.produtosCompra.remove(produto);
-		calcularValor();
-	}
-	
 	public void calcularValor() {
 		for(ProdutoCompra produto:produtosCompra) {
-			valorTotalCompra = produto.getValorTotal().add(valorTotalCompra);
+			valorTotalCompra = produto.getValorTotal()+valorTotalCompra;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Compra [id=" + id + ", dataHoraCompra=" + dataHoraCompra + ", valorTotalCompra="
+		return "Compra [id=" + id + ", dataHoraCompra=" + horaCompra + ", valorTotalCompra="
 				+ valorTotalCompra + ", fornecedorCompra=" + fornecedorCompra + "]";
 	}
 	

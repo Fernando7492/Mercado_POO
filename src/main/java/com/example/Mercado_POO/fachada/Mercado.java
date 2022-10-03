@@ -24,6 +24,8 @@ import com.example.Mercado_POO.cadastro.CadastroFornecedor;
 import com.example.Mercado_POO.cadastro.CadastroProduto;
 import com.example.Mercado_POO.cadastro.CadastroVenda;
 import com.example.Mercado_POO.cadastro.CadastroVendedor;
+import com.example.Mercado_POO.excecoes.ClienteInexistenteException;
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 
 @Service
 public class Mercado {
@@ -79,9 +81,13 @@ public class Mercado {
 
 	//Compra
 	
-	public Compra saveCompra(Compra compra) {
+	public Compra saveCompra(Compra compra) throws QuantidadeNegativaException {
 		for(ProdutoCompra produto : compra.getProdutosCompra()) {
+			try {
 			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())+produto.getQtdProdutos());
+			}catch(QuantidadeNegativaException e){
+				throw new QuantidadeNegativaException(produto.getProduto().getNome());
+			}
 			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
 			movimentacao.setProduto(produto.getProduto());
 			movimentacao.setQuantidade(+produto.getQtdProdutos());
@@ -114,7 +120,7 @@ public class Mercado {
 	
 	//Venda
 	
-	public Venda saveVenda(Venda venda) {
+	public Venda saveVenda(Venda venda) throws QuantidadeNegativaException {
 		boolean done = true;
 		ArrayList<ProdutoVenda> listProdutoVenda = new ArrayList<ProdutoVenda>(venda.getProdutosVenda());
 		ArrayList<Produto> listProduto = new ArrayList<Produto>(listAllProduto());
@@ -123,7 +129,12 @@ public class Mercado {
 			for(Produto produto : listProduto) {
 				if(produtoVenda.getProduto().getId()==produto.getId()) {
 					if(produtoVenda.getQtdProdutos() <= produto.getQuantidade()) {
-						produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
+						try {
+							produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
+							}catch(QuantidadeNegativaException e){
+								throw new QuantidadeNegativaException(produto.getNome());
+							}
+						
 					}else {
 						done = false;
 					}
@@ -199,10 +210,6 @@ public class Mercado {
 		return cadastroProduto.findByCategoria(categoria);
 	}
 	
-	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
-		return cadastroProduto.findByValidade(validadeProdutoMin,validadeProdutoMax);
-	} 
-	
 	public void deleteProdutoById(Long id) {
 		cadastroProduto.deleteById(id);
 	}
@@ -219,11 +226,6 @@ public class Mercado {
 	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
 		return cadastroMovimentacaoEstoque.findById(id);
 	}
-	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(String dataMovimentacaoEstoqueIni, String dataMovimentacaoEstoqueFim){
-		return cadastroMovimentacaoEstoque.findByDataHora(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
-
-	}
-	
 
 	//Cliente
 	
@@ -251,7 +253,7 @@ public class Mercado {
 		return cadastroCliente.findByCpfCliente(cpf);
 	}
 	
-	public void deleteByIdCliente(Long id) {
+	public void deleteByIdCliente(Long id) throws ClienteInexistenteException {
 		cadastroCliente.deleteById(id);
 	}
 	

@@ -13,12 +13,12 @@ public class Vendedor extends Pessoa{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String cargo;
-	private double salario;
+	private Double salario;
 	private String dataContrato;
 
 	
 	public Vendedor(String nome, String cpf, String sexo, String dataNascimento, String email, Endereco enderecoPessoa,
-			Long id, String cargo, double salario, String dataContrato) {
+			Long id, String cargo, Double salario, String dataContrato) {
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 		this.id = id;
 		this.cargo = cargo;
@@ -28,7 +28,7 @@ public class Vendedor extends Pessoa{
 
 	
 	public Vendedor(String nome, String cpf, String sexo, String dataNascimento, String email, Endereco enderecoPessoa,
-			String cargo, double salario, String dataContrato) {
+			String cargo, Double salario, String dataContrato) {
 		super(nome, cpf, sexo, dataNascimento, email, enderecoPessoa);
 		this.cargo = cargo;
 		this.salario = salario;
@@ -43,7 +43,7 @@ public class Vendedor extends Pessoa{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,7 +59,7 @@ public class Vendedor extends Pessoa{
 		return salario;
 	}
 
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 
