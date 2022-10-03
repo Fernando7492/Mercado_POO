@@ -50,22 +50,12 @@ public class ControllerFornecedor {
 		}
 	}
 	
-	//@PutMapping("/editar")
-	@RequestMapping(value = "/editar", method = RequestMethod.POST)
-    public ResponseEntity<Object> atualizarFornecedor(@RequestBody Fornecedor novoFornecedor) {
-        //return mercado.updateFornecedor(novoFornecedor);
-        if(mercado.updateFornecedor(novoFornecedor) != null) {
-			 Map<String, Object> resp = new HashMap<String, Object>();
-			 resp.put("ok", "successfully");
-			return new ResponseEntity<Object>(resp,HttpStatus.OK);
-		}else {
-			Map<String, Object> resp = new HashMap<String, Object>();
-			 resp.put("Error", "Error");
-			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
-		}
+	@PutMapping("atualizarFornecedor")
+    public Fornecedor atualizarFornecedor(@RequestBody long antigoFornecedorId, Fornecedor novoFornecedor) {
+        return mercado.updateFornecedor(antigoFornecedorId, novoFornecedor);
     }
 	
-	@GetMapping("/listarTodos")
+	@GetMapping("fornecedor")
 	public List<Fornecedor> listarFornecedores(){
 		return mercado.listAllFornecedor();
 	}
