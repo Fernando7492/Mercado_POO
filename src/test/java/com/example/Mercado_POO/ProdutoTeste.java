@@ -27,7 +27,8 @@ class ProdutoTeste {
 		
 	boolean thrown = false;
 	produto = new Produto("produto1", "generico", 10.0, 15.0, 5, "01/02/2022");
-	
+	produtoVenda = new ProdutoVenda();
+	produtoVenda.setProduto(produto);
 	try {
 		produtoVenda.setQtdProdutos(-1);		
 	
