@@ -28,10 +28,14 @@ public class CadastroVendedor {
 		return repositorioVendedor.findAll();
 	}
 	
-	public Vendedor update(Vendedor novo) {
-			
+	public Vendedor update(long antigoId, Vendedor novo) {
+		if(repositorioVendedor.existsByCpf(novo.getCpf())) {
+			return null;
+		}	
+		else {
+			novo.setId(antigoId);			
 			return repositorioVendedor.save(novo);
-
+		}
 	}
 	
 	public Optional<Vendedor> findById(Long id) {

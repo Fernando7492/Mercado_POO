@@ -264,8 +264,8 @@ public class Mercado {
 		return cadastroVendedor.listAll();
 	}
 	
-	public Vendedor updateVendedor( Vendedor novo) {
-		return cadastroVendedor.update( novo);
+	public Vendedor updateVendedor(long antigoId, Vendedor novo) {
+		return cadastroVendedor.update(antigoId, novo);
 	}
 	
 	public Optional<Vendedor> findByIdVendedor(Long id) {
