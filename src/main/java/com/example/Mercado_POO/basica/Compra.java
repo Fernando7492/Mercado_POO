@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Compra {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String horaCompra;
 	private Double valorTotalCompra;
@@ -17,7 +17,7 @@ public class Compra {
 	@JoinColumn(name="fornecedor_id")
 	private Fornecedor fornecedorCompra;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="compra_id")
 	private List<ProdutoCompra> produtosCompra;
 	

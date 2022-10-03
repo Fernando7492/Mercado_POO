@@ -28,6 +28,7 @@ import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Venda;
 import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 import com.example.Mercado_POO.fachada.Mercado;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 @CrossOrigin(origins="http://localhost:8080/")
 @RestController
@@ -40,6 +41,20 @@ public class ControllerVenda {
 	@PostMapping("/inserir")
     @ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Object> criarVenda(@RequestBody Venda venda) throws JSONException, ParseException, QuantidadeNegativaException {
+		/*try {
+			mercado.saveVenda(venda);
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("ok", "successfully");
+			return new ResponseEntity<Object>(resp,HttpStatus.OK);
+		}catch (QuantidadeNegativaException e) {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error",e);
+			return new ResponseEntity<>(resp,  HttpStatus.INTERNAL_SERVER_ERROR);
+		}catch (Exception e) {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error", "Error");
+			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
+		}*/
 		if(mercado.saveVenda(venda) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");

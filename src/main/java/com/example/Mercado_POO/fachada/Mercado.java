@@ -82,7 +82,7 @@ public class Mercado {
 	//Compra
 	
 	public Compra saveCompra(Compra compra){
-		for(ProdutoCompra produto : compra.getProdutosCompra()) {
+		/*for(ProdutoCompra produto : compra.getProdutosCompra()) {
 			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())+produto.getQtdProdutos());
 			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
 			movimentacao.setProduto(produto.getProduto());
@@ -90,7 +90,7 @@ public class Mercado {
 			movimentacao.setMotivo("Compra");
 			movimentacao.setDataHora("1/8/2022");
 			saveMovimentacaoEstoque(movimentacao);
-		}
+		}*/
 		return cadastroCompra.saveCompra(compra);
 	}	
 	
@@ -136,7 +136,7 @@ public class Mercado {
 		}
 		
 		if(done) {
-			for(ProdutoVenda produto : venda.getProdutosVenda()) {
+			/*for(ProdutoVenda produto : venda.getProdutosVenda()) {
 			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())-produto.getQtdProdutos());
 			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
 			movimentacao.setProduto(produto.getProduto());
@@ -144,7 +144,7 @@ public class Mercado {
 			movimentacao.setMotivo("Venda");
 			movimentacao.setDataHora(venda.getHoraVenda());
 			saveMovimentacaoEstoque(movimentacao);
-			}
+			}*/
 			return cadastroVenda.saveVenda(venda);
 		}else {
 			return null;

@@ -1,6 +1,5 @@
 package com.example.Mercado_POO.basica;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +19,7 @@ public class MovimentacaoEstoque {
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="produto_id")
 	private Produto produto;
+	
 
 	public long getId() {
 		return id;

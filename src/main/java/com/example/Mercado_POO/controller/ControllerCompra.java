@@ -1,10 +1,13 @@
 package com.example.Mercado_POO.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +22,26 @@ import com.example.Mercado_POO.basica.Compra;
 import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 import com.example.Mercado_POO.fachada.Mercado;
 
-@CrossOrigin(origins="http://localhost:8080/")
+//@CrossOrigin(origins="http://localhost:8080/")
 @RestController
-@RequestMapping("/mercado/api/")
+@RequestMapping("/compra")
 public class ControllerCompra {
 	
 	@Autowired
 	private Mercado mercado;
 
-	@PostMapping("compra")
+	@PostMapping("/inserir")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public Compra criarCompra(@RequestBody Compra compra) throws QuantidadeNegativaException {
-		return mercado.saveCompra(compra);
+	public ResponseEntity<Object> criarCompra(@RequestBody Compra compra) throws QuantidadeNegativaException {
+		if(mercado.saveCompra(compra) != null) {
+			 Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("ok", "successfully");
+			return new ResponseEntity<Object>(resp,HttpStatus.OK);
+		}else {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error", "Error");
+			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("compra")
