@@ -81,13 +81,9 @@ public class Mercado {
 
 	//Compra
 	
-	public Compra saveCompra(Compra compra) throws QuantidadeNegativaException {
+	public Compra saveCompra(Compra compra){
 		for(ProdutoCompra produto : compra.getProdutosCompra()) {
-			try {
 			produto.getProduto().setQuantidade((produto.getProduto().getQuantidade())+produto.getQtdProdutos());
-			}catch(QuantidadeNegativaException e){
-				throw new QuantidadeNegativaException(produto.getProduto().getNome());
-			}
 			MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
 			movimentacao.setProduto(produto.getProduto());
 			movimentacao.setQuantidade(+produto.getQtdProdutos());
@@ -128,12 +124,9 @@ public class Mercado {
 		for(ProdutoVenda produtoVenda : listProdutoVenda) {
 			for(Produto produto : listProduto) {
 				if(produtoVenda.getProduto().getId()==produto.getId()) {
+					if(produtoVenda.getQtdProdutos()<0) throw new QuantidadeNegativaException(produtoVenda.getProduto().getNome());
 					if(produtoVenda.getQtdProdutos() <= produto.getQuantidade()) {
-						try {
 							produto.setQuantidade(produto.getQuantidade()-produtoVenda.getQtdProdutos());
-							}catch(QuantidadeNegativaException e){
-								throw new QuantidadeNegativaException(produto.getNome());
-							}
 						
 					}else {
 						done = false;

@@ -75,9 +75,7 @@ public class Produto{
 	public int getQuantidade() {
 		return quantidade;
 	}
-	public void setQuantidade(int quantidade) throws QuantidadeNegativaException{
-		if(quantidade<0)
-			throw new QuantidadeNegativaException(this.nome);
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 	
