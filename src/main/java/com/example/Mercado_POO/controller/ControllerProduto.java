@@ -83,9 +83,9 @@ public class ControllerProduto {
 		return mercado.findByCategoriaProduto(categoria);
 	}
 	
-	@DeleteMapping("/produto{id}") 
+	@DeleteMapping("/delete/{id}") 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(@PathVariable long id)throws ProdutoInexistenteException {
+	public void deleteById(@PathVariable Long id)throws ProdutoInexistenteException {
 		mercado.deleteProdutoById(id);
 	}
 	

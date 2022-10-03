@@ -75,15 +75,16 @@ public class ControllerFornecedor {
 		return mercado.findByCnpjFornecedor(cnpj);
 	}
 	
-	@DeleteMapping("/fornecedor{idFornecedor}")
+	@DeleteMapping("/delete/{idFornecedor}")
+	//@RequestMapping(value = "/delete/{idFornecedor}", method = RequestMethod.DELETE)
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteByIdFornecedor(@PathVariable long idFornecedor) {
+	public void deleteByIdFornecedor(@PathVariable Long idFornecedor) {
 		mercado.deleteByIdFornecedor(idFornecedor);
 	}
 	
-	@DeleteMapping("Fornecedor")
+	@DeleteMapping("/delete")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteFornecedor(Fornecedor fornecedor) {
+	public void deleteFornecedor(@RequestBody Fornecedor fornecedor) {
 		mercado.deleteFornecedor(fornecedor);
 	}
 	

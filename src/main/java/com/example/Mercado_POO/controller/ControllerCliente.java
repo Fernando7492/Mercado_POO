@@ -83,9 +83,9 @@ public class ControllerCliente {
 		return mercado.findByCpfCliente(cpf);
 	}
 	
-	@DeleteMapping("/deleteCliente{idCliente}")
+	@DeleteMapping("/delete/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteByIdCliente(@PathVariable long idCliente) throws ClienteInexistenteException {
+	public void deleteByIdCliente(@PathVariable Long idCliente) throws ClienteInexistenteException {
 		mercado.deleteByIdCliente(idCliente);
 	}
 	

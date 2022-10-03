@@ -86,9 +86,9 @@ public class ControllerVendedor {
 		return mercado.findByCpfVendedor(cpf);
 	}
 	
-	@DeleteMapping("/vendedor{idVendedor}")
+	@DeleteMapping("/delete/{idVendedor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteByIdVendedor(@PathVariable long idVendedor) {
+	public void deleteByIdVendedor(@PathVariable Long idVendedor) {
 		mercado.deleteByIdVendedor(idVendedor);
 	}
 	
