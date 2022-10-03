@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
+
 @Entity
 public class ProdutoVenda {
 	
@@ -56,7 +58,9 @@ public class ProdutoVenda {
 		return qtdProdutos;
 	}
 
-	public void setQtdProdutos(Integer qtdProdutos) {
+	public void setQtdProdutos(Integer qtdProdutos) throws QuantidadeNegativaException{
+		if(qtdProdutos<0)
+			throw new QuantidadeNegativaException(getProduto().getNome());
 		this.qtdProdutos = qtdProdutos;
 	}
 
