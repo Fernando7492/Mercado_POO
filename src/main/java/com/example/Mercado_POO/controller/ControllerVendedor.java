@@ -52,9 +52,18 @@ public class ControllerVendedor {
 		}
 	}
 	
-	@PutMapping("atualizarVendedor")
-    public Vendedor atualizarVendedor(@RequestBody long antigoVendedorId, Vendedor novoVendedor) {
-        return mercado.updateVendedor(antigoVendedorId, novoVendedor);
+	@PostMapping("/editar")
+    public ResponseEntity<Object> atualizarVendedor(@RequestBody  Vendedor novoVendedor) {
+
+        if(mercado.updateVendedor( novoVendedor) != null) {
+			 Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("ok", "successfully");
+			return new ResponseEntity<Object>(resp,HttpStatus.OK);
+		}else {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error", "Error");
+			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
+		}
     }
 	
 	@GetMapping("/listarVendedores")

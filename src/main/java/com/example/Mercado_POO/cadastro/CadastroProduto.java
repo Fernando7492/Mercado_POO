@@ -33,14 +33,10 @@ public class CadastroProduto {
 		return repositorioProduto.findAll();
 	}
 	
-	public Produto update(long antigoId,Produto novo) {
-		if(repositorioProduto.existsByNome(novo.getNome())) {
-			return null;
-		}
-		else {
-			novo.setId(antigoId);
+	public Produto update(Produto novo) {
+
 			return repositorioProduto.save(novo);
-		}
+	
 	}
 	
 	public Optional<Produto> findByNome(String nome){

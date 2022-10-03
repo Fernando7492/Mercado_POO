@@ -69,7 +69,7 @@ public class Venda {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

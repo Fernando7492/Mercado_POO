@@ -21,7 +21,7 @@ public class MovimentacaoEstoque {
 	private Produto produto;
 	
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

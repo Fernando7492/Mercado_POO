@@ -34,7 +34,7 @@ public class Compra {
 		this.produtosCompra = produtosCompra;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

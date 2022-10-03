@@ -50,12 +50,12 @@ public class ControllerFornecedor {
 		}
 	}
 	
-	@PutMapping("atualizarFornecedor")
-    public Fornecedor atualizarFornecedor(@RequestBody long antigoFornecedorId, Fornecedor novoFornecedor) {
-        return mercado.updateFornecedor(antigoFornecedorId, novoFornecedor);
+	@PostMapping("/editar")
+    public Fornecedor atualizarFornecedor(@RequestBody Fornecedor novoFornecedor) {
+        return mercado.updateFornecedor(novoFornecedor);
     }
 	
-	@GetMapping("fornecedor")
+	@GetMapping("/listarTodos")
 	public List<Fornecedor> listarFornecedores(){
 		return mercado.listAllFornecedor();
 	}
