@@ -191,8 +191,8 @@ public class Mercado {
 		return cadastroProduto.listAll();
 	}
 	
-	public Produto updateProduto(Produto novo) {
-			return cadastroProduto.update(novo);
+	public Produto updateProduto(long antigoId,Produto novo) {
+			return cadastroProduto.update(antigoId,novo);
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
@@ -264,8 +264,8 @@ public class Mercado {
 		return cadastroVendedor.listAll();
 	}
 	
-	public Vendedor updateVendedor( Vendedor novo) {
-		return cadastroVendedor.update( novo);
+	public Vendedor updateVendedor(long antigoId, Vendedor novo) {
+		return cadastroVendedor.update(antigoId, novo);
 	}
 	
 	public Optional<Vendedor> findByIdVendedor(Long id) {
