@@ -65,9 +65,17 @@ public class ControllerProduto {
 	public Optional<Produto> findProdutoByNome(@PathVariable String nome){
 		return mercado.findByNomeProduto(nome);
 	}
-	@PutMapping("produtos")
-    public Produto atualizarProduto(@RequestBody long antigoProdutoId, Produto novoProduto) {
-        return mercado.updateProduto(antigoProdutoId, novoProduto);
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public ResponseEntity<Object> atualizarProduto(@RequestBody Produto novoProduto) {
+        if(mercado.updateProduto( novoProduto) != null) {
+			 Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("ok", "successfully");
+			return new ResponseEntity<Object>(resp,HttpStatus.OK);
+		}else {
+			Map<String, Object> resp = new HashMap<String, Object>();
+			 resp.put("Error", "Error");
+			return new ResponseEntity<>(resp,  HttpStatus.BAD_REQUEST);
+		}
     }
 	@GetMapping("/{categoria}")
 	public Optional<Produto> findByCategoriaProduto(@PathVariable String categoria){

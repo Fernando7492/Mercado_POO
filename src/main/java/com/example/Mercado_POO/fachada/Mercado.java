@@ -187,8 +187,8 @@ public class Mercado {
 		return cadastroProduto.listAll();
 	}
 	
-	public Produto updateProduto(long antigoId,Produto novo) {
-			return cadastroProduto.update(antigoId,novo);
+	public Produto updateProduto(Produto novo) {
+			return cadastroProduto.update(novo);
 	}
 	
 	public Optional<Produto> findByNomeProduto(String nome){
