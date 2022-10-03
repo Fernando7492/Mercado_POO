@@ -1,5 +1,6 @@
 package com.example.Mercado_POO;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.Mercado_POO.basica.Produto;
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,11 +23,18 @@ class ProdutoTeste {
 	@Test
 	void testaSetQuantidadeNegativa() {
 		
-		produto = new Produto("produto1", "generico", 10.0, 15.0, 5, "01/02/2022");
-		qtd=produto.getQuantidade()-6;
-		produto.setQuantidade(produto.getQuantidade()-6);
-		assertNotEquals(qtd,produto.getQuantidade());
+	boolean thrown = false;
+	produto = new Produto("produto1", "generico", 10.0, 15.0, 5, "01/02/2022");
+	
+	try {
 		
+		produto.setQuantidade(-1);
+	
+	}   catch (QuantidadeNegativaException e) {
+	    thrown = true;
+	}
+	
+	  assertTrue(thrown);		
 	}
 
 }

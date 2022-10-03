@@ -16,5 +16,7 @@ public interface RepositorioCliente extends JpaRepository<Cliente, Long>{
 	
 	boolean existsByCpf(String cpf);
 	
+	boolean existsById(Long id);
+	
 	
 }

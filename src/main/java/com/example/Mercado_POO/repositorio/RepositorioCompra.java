@@ -12,6 +12,6 @@ public interface RepositorioCompra extends JpaRepository<Compra, Long> {
 	
 	Compra findById(long id);
 	
-	Optional<Compra> findByFornecedorCompraId(long fornecedorId);
+	Optional<Compra> findByFornecedorCompraId(Long fornecedorId);
 
 }

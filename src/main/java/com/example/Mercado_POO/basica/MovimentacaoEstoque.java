@@ -1,26 +1,21 @@
 package com.example.Mercado_POO.basica;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class MovimentacaoEstoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String dataHora;
 	private String motivo;
-	private int quantidade;
+	private Integer quantidade;
 
 	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="produto_id")

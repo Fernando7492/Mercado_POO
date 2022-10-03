@@ -1,19 +1,19 @@
 package com.example.Mercado_POO.basica;
 
-import java.math.BigDecimal;
 import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 
 
 @Entity
 public class Produto{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String nome;
 	private String categoria;
 	private Double valorCompra;
@@ -32,8 +32,6 @@ public class Produto{
 		this.validade = validade;
 	}
 	
-	
-	
 	public Produto(long id, String nome, String categoria, Double valorCompra, Double valorVenda,
 			Integer quantidade, String validade) {
 		super();
@@ -46,13 +44,9 @@ public class Produto{
 		this.validade = validade;
 	}
 
-
-
 	public Produto() {
 		super();
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -81,13 +75,12 @@ public class Produto{
 	public int getQuantidade() {
 		return quantidade;
 	}
-	public void setQuantidade(int quantidade) {
-		if(quantidade<0) {
-			this.quantidade=0;
-		}else {
-			this.quantidade=quantidade;
-		}
+	public void setQuantidade(int quantidade) throws QuantidadeNegativaException{
+		if(quantidade<0)
+			throw new QuantidadeNegativaException(this.nome);
+		this.quantidade = quantidade;
 	}
+	
 	public String getValidade() {
 		return validade;
 	}

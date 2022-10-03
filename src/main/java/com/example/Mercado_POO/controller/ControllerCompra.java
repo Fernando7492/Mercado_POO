@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Mercado_POO.basica.Compra;
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @CrossOrigin(origins="http://localhost:8080/")
@@ -28,7 +29,7 @@ public class ControllerCompra {
 
 	@PostMapping("compra")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public Compra criarCompra(@RequestBody Compra compra) {
+	public Compra criarCompra(@RequestBody Compra compra) throws QuantidadeNegativaException {
 		return mercado.saveCompra(compra);
 	}
 	

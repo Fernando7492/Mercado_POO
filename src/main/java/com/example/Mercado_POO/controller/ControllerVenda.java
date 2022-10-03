@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Venda;
+import com.example.Mercado_POO.excecoes.QuantidadeNegativaException;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @CrossOrigin(origins="http://localhost:8080/")
@@ -38,7 +39,7 @@ public class ControllerVenda {
 
 	@PostMapping("/inserir")
     @ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Object> criarVenda(@RequestBody Venda venda) throws JSONException, ParseException {
+	public ResponseEntity<Object> criarVenda(@RequestBody Venda venda) throws JSONException, ParseException, QuantidadeNegativaException {
 		if(mercado.saveVenda(venda) != null) {
 			 Map<String, Object> resp = new HashMap<String, Object>();
 			 resp.put("ok", "successfully");
