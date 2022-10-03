@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Endereco;
 import com.example.Mercado_POO.basica.Produto;
+import com.example.Mercado_POO.excecoes.ProdutoInexistenteException;
 import com.example.Mercado_POO.fachada.Mercado;
 import com.fasterxml.jackson.core.io.BigDecimalParser;
 
@@ -74,9 +75,9 @@ public class ControllerProduto {
 		return mercado.findByCategoriaProduto(categoria);
 	}
 	
-	@DeleteMapping("/produto{id}")
+	@DeleteMapping("/produto{id}") 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(@PathVariable long id) {
+	public void deleteById(@PathVariable long id)throws ProdutoInexistenteException {
 		mercado.deleteProdutoById(id);
 	}
 	
