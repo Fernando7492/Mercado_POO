@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Mercado_POO.basica.Cliente;
+import com.example.Mercado_POO.excecoes.ClienteInexistenteException;
 import com.example.Mercado_POO.repositorio.RepositorioCliente;
 
 @Service
@@ -41,11 +42,13 @@ public class CadastroCliente {
 		return repositorioCliente.findByNomeContainingIgnoreCase(nome);
 	}
 	
-	public Optional<Cliente> findByCpfCliente(String cnpj) {
-		return repositorioCliente.findByCpfContainingIgnoreCase(cnpj);
+	public Optional<Cliente> findByCpfCliente(String cpf) {
+		return repositorioCliente.findByCpfContainingIgnoreCase(cpf);
 	}
 	
-	public void deleteById(Long id) {
+	public void deleteById(Long id) throws ClienteInexistenteException {
+		if(!repositorioCliente.existsById(id)) 
+			throw new ClienteInexistenteException();
 		repositorioCliente.deleteById(id);
 	}
 	

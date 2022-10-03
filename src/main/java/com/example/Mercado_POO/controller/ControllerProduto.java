@@ -81,10 +81,6 @@ public class ControllerProduto {
 	public Optional<Produto> findByCategoriaProduto(@PathVariable String categoria){
 		return mercado.findByCategoriaProduto(categoria);
 	}
-	@GetMapping("Produto")
-	public Optional<Produto> findByValidadeProduto(Date validadeProdutoMin,Date validadeProdutoMax){
-		return mercado.findByValidadeProduto(validadeProdutoMin,validadeProdutoMax);
-	} 
 	
 	@DeleteMapping("/produto{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

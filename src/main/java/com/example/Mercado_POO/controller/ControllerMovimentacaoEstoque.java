@@ -33,10 +33,5 @@ public class ControllerMovimentacaoEstoque {
 	public Optional<MovimentacaoEstoque> findMovimentacaoEstoqueById(Long id){
 		return mercado.findMovimentacaoEstoqueById(id);
 	}
-	@GetMapping("MovimentacaoEstoque")
-	public Optional<MovimentacaoEstoque> findByDataMovimentacaoEstoque(String dataMovimentacaoEstoqueIni, String dataMovimentacaoEstoqueFim){
-		return mercado.findByDataMovimentacaoEstoque(dataMovimentacaoEstoqueIni, dataMovimentacaoEstoqueFim);
-		
-	}
 
 }

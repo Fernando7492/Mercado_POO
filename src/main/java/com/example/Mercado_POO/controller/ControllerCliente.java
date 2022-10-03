@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Mercado_POO.basica.Cliente;
 import com.example.Mercado_POO.basica.Endereco;
+import com.example.Mercado_POO.excecoes.ClienteInexistenteException;
 import com.example.Mercado_POO.fachada.Mercado;
 
 @RestController
@@ -84,7 +85,7 @@ public class ControllerCliente {
 	
 	@DeleteMapping("/deleteCliente{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteByIdCliente(@PathVariable long idCliente) {
+	public void deleteByIdCliente(@PathVariable long idCliente) throws ClienteInexistenteException {
 		mercado.deleteByIdCliente(idCliente);
 	}
 	

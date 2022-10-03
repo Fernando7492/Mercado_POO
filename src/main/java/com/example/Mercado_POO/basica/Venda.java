@@ -17,7 +17,7 @@ public class Venda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String horaVenda;
 	private Double valorTotal;
 	private String formaPagamento;
@@ -37,8 +37,6 @@ public class Venda {
 	public Venda() {
 		super();
 	}
-
-	
 
 	public Venda(long id, String horaVenda, Double valorTotal, String formaPagamento,
 			Cliente clienteVenda, Vendedor vendedorVenda, List<ProdutoVenda> produtosVenda) {
@@ -75,7 +73,7 @@ public class Venda {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -115,18 +113,8 @@ public class Venda {
 		calcularValor();
 	}
 	
-	public void adicionarProduto(ProdutoVenda produto) {
-		this.produtosVenda.add(produto);
-		calcularValor();
-	}
-	
-	public void removerProdutos(ProdutoVenda produto) {
-		this.produtosVenda.remove(produto);
-		calcularValor();
-	}
-	
 	public void calcularValor() {
-		for(ProdutoVenda produto: produtosVenda) {
+		for(ProdutoVenda produto:produtosVenda) {
 			valorTotal = produto.getValorTotal();
 		}
 	}

@@ -47,8 +47,8 @@ public class CadastroProduto {
 		return repositorioProduto.findByCategoriaContainingIgnoreCase(categoria);
 	}
 	
-	public Optional<Produto> findByValidade(Date validadeProdutoMin,Date validadeProdutoMax){
-		return repositorioProduto.findByValidadeBetween(validadeProdutoMin,validadeProdutoMax);
+	public Optional<Produto> findByValidade(String validadeProduto){
+		return repositorioProduto.findByValidade(validadeProduto);
 	} 
 	
 	public void deleteById(Long id) {
